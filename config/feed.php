@@ -22,7 +22,7 @@ return [
 
     'shipping_countries' => ['CH'],
 
-    'shipping_service' => 'Standardversand (1–2 Werktage)',
+    'shipping_service' => env('MERCHANT_SHIPPING_SERVICE', 'Standardversand (1–2 Werktage)'),
 
     'shipping_price' => (float) env('MERCHANT_SHIPPING_PRICE', 0),
 

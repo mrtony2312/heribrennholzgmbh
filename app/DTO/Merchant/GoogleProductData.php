@@ -69,41 +69,12 @@ class GoogleProductData
             'priceCurrency' => $this->currency,
             'availability' => $this->schemaAvailability(),
             'itemCondition' => 'https://schema.org/NewCondition',
-            'hasMerchantReturnPolicy' => [
-                '@type' => 'MerchantReturnPolicy',
-                'applicableCountry' => $this->targetCountry,
-                'returnPolicyCategory' => 'https://schema.org/MerchantReturnFiniteReturnWindow',
-                'merchantReturnDays' => (int) config('feed.return_days', 14),
-                'returnMethod' => 'https://schema.org/ReturnByMail',
-                'returnFees' => 'https://schema.org/ReturnFeesCustomerResponsibility',
+            'seller' => [
+                '@type' => 'Organization',
+                'name' => (string) config('merchant.nap.legal_name', config('feed.company.legal_name', config('app.name'))),
             ],
-            'shippingDetails' => [
-                '@type' => 'OfferShippingDetails',
-                'shippingRate' => [
-                    '@type' => 'MonetaryAmount',
-                    'value' => number_format((float) config('feed.shipping_price', 0), 2, '.', ''),
-                    'currency' => $this->currency,
-                ],
-                'shippingDestination' => [
-                    '@type' => 'DefinedRegion',
-                    'addressCountry' => $this->targetCountry,
-                ],
-                'deliveryTime' => [
-                    '@type' => 'ShippingDeliveryTime',
-                    'handlingTime' => [
-                        '@type' => 'QuantitativeValue',
-                        'minValue' => (int) config('feed.shipping_handling_time_min', 1),
-                        'maxValue' => (int) config('feed.shipping_handling_time_max', 1),
-                        'unitCode' => 'DAY',
-                    ],
-                    'transitTime' => [
-                        '@type' => 'QuantitativeValue',
-                        'minValue' => (int) config('feed.shipping_transit_time_min', 0),
-                        'maxValue' => (int) config('feed.shipping_transit_time_max', 1),
-                        'unitCode' => 'DAY',
-                    ],
-                ],
-            ],
+            'hasMerchantReturnPolicy' => $this->returnPolicy(),
+            'shippingDetails' => $this->shippingDetails(),
         ];
 
         $product = [
@@ -129,5 +100,76 @@ class GoogleProductData
         }
 
         return $product;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function returnPolicy(): array
+    {
+        $customerPays = (bool) config('merchant.returns.customer_pays_return_shipping', true);
+        $returnCost = round((float) config('merchant.returns.return_shipping_cost', 0), 2);
+        $days = (int) config('merchant.returns.days', config('feed.return_days', 14));
+
+        if ($customerPays && $returnCost <= 0) {
+            $returnCost = 19.90;
+        }
+
+        $policy = [
+            '@type' => 'MerchantReturnPolicy',
+            'applicableCountry' => $this->targetCountry !== '' ? $this->targetCountry : 'CH',
+            'returnPolicyCategory' => 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            'merchantReturnDays' => $days,
+            'returnMethod' => 'https://schema.org/ReturnByMail',
+            'returnFees' => $customerPays
+                ? 'https://schema.org/ReturnShippingFees'
+                : 'https://schema.org/FreeReturn',
+        ];
+
+        if ($customerPays) {
+            $policy['returnShippingFeesAmount'] = [
+                '@type' => 'MonetaryAmount',
+                'value' => number_format($returnCost, 2, '.', ''),
+                'currency' => $this->currency !== '' ? $this->currency : 'CHF',
+            ];
+        }
+
+        return $policy;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function shippingDetails(): array
+    {
+        $country = (string) config('merchant.shipping.country', config('feed.target_country', 'CH'));
+
+        return [
+            '@type' => 'OfferShippingDetails',
+            'shippingRate' => [
+                '@type' => 'MonetaryAmount',
+                'value' => number_format((float) config('merchant.shipping.price', config('feed.shipping_price', 0)), 2, '.', ''),
+                'currency' => $this->currency !== '' ? $this->currency : 'CHF',
+            ],
+            'shippingDestination' => [
+                '@type' => 'DefinedRegion',
+                'addressCountry' => $country,
+            ],
+            'deliveryTime' => [
+                '@type' => 'ShippingDeliveryTime',
+                'handlingTime' => [
+                    '@type' => 'QuantitativeValue',
+                    'minValue' => (int) config('merchant.shipping.handling_min', config('feed.shipping_handling_time_min', 1)),
+                    'maxValue' => (int) config('merchant.shipping.handling_max', config('feed.shipping_handling_time_max', 1)),
+                    'unitCode' => 'DAY',
+                ],
+                'transitTime' => [
+                    '@type' => 'QuantitativeValue',
+                    'minValue' => (int) config('merchant.shipping.transit_min', config('feed.shipping_transit_time_min', 0)),
+                    'maxValue' => (int) config('merchant.shipping.transit_max', config('feed.shipping_transit_time_max', 1)),
+                    'unitCode' => 'DAY',
+                ],
+            ],
+        ];
     }
 }

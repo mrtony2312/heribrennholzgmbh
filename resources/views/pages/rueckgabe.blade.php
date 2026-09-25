@@ -15,7 +15,7 @@
             <p>Die Ware muss unbenutzt und in wiederverkaufsfähigem Zustand sein.</p>
 
             <h5>Rücksendekosten</h5>
-            <p>Die Kosten der Rücksendung trägt die Kundin bzw. der Kunde, ausser die Ware war defekt oder es wurde ein falscher Artikel geliefert – in diesen Fällen übernehmen wir die Rücksendekosten.</p>
+            <p>Die Kosten der Rücksendung trägt die Kundin bzw. der Kunde (Richtwert CHF {{ number_format((float) config('merchant.returns.return_shipping_cost', 19.90), 2, '.', '') }}), ausser die Ware war defekt oder es wurde ein falscher Artikel geliefert – in diesen Fällen übernehmen wir die Rücksendekosten.</p>
 
             <h5>Erstattung</h5>
             <p>Nach Eingang und Prüfung der zurückgesandten Ware erstatten wir den Kaufpreis innerhalb von 14 Tagen auf dasselbe Zahlungsmittel.</p>

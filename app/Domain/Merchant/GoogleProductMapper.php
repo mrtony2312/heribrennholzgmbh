@@ -25,7 +25,9 @@ class GoogleProductMapper
         $currency = (string) ($product->currency ?: config('feed.currency', 'CHF'));
         $price = (float) $product->price;
         $regular = (float) ($product->regular_price ?: $product->price);
-        $onSale = (bool) $product->on_sale && $regular > $price;
+        // Do not publish sale_price / strike-through unless reference prices are verified (GMC).
+        $referenceVerified = (bool) config('merchant.reference_prices_verified', false);
+        $onSale = $referenceVerified && (bool) $product->on_sale && $regular > $price;
         $brand = $this->resolveBrand($product);
         $gtin = Gtin::normalize($product->gtin);
         $mpn = trim((string) ($product->sku ?? ''));
