@@ -8,7 +8,7 @@
     $gallery = $product->images->isNotEmpty()
         ? $product->images
         : collect([(object) ['url' => asset('assets/images/item/item-bg.jpg'), 'alt' => $product->name]]);
-    $hasPromo = $product->on_sale && $product->regular_price && $product->regular_price > $product->price;
+    $hasPromo = gmc_product_on_promo($product);
 @endphp
 
 @section('content')

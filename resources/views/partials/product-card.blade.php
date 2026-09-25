@@ -2,7 +2,7 @@
     $img = $product->primary_image;
     $hover = $product->images->get(1);
     $inWishlist = $wishlist->has($product->id);
-    $hasPromo = $product->on_sale && $product->regular_price && $product->sale_price && $product->regular_price > $product->price;
+    $hasPromo = gmc_product_on_promo($product);
 @endphp
 <div class="card-product">
     <div class="card-product_wrapper">
@@ -20,7 +20,7 @@
                 </li>
             </ul>
         @elseif (! $product->in_stock)
-            <ul class="product-badge_list"><li class="product-badge_item text-caption">Rupture</li></ul>
+            <ul class="product-badge_list"><li class="product-badge_item text-caption">Ausverkauft</li></ul>
         @endif
 
         <ul class="product-action_list">

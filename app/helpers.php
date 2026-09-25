@@ -41,3 +41,49 @@ if (! function_exists('payment_methods_text')) {
         return implode(', ', payment_methods());
     }
 }
+
+if (! function_exists('gmc_reference_prices_verified')) {
+    function gmc_reference_prices_verified(): bool
+    {
+        return (bool) config('merchant.reference_prices_verified', false);
+    }
+}
+
+if (! function_exists('gmc_product_on_promo')) {
+    /**
+     * True only when a strike-through / sale can be shown on-site AND in Merchant feeds.
+     */
+    function gmc_product_on_promo($product): bool
+    {
+        if (! gmc_reference_prices_verified()) {
+            return false;
+        }
+
+        $regular = (float) ($product->regular_price ?? 0);
+        $price = (float) ($product->price ?? 0);
+
+        return (bool) ($product->on_sale ?? false)
+            && $regular > 0
+            && $regular > $price;
+    }
+}
+
+if (! function_exists('gmc_absolute_url')) {
+    function gmc_absolute_url(?string $url): string
+    {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return '';
+        }
+        if (str_starts_with($url, '//')) {
+            $url = 'https:'.$url;
+        } elseif (str_starts_with($url, '/')) {
+            $url = rtrim((string) config('app.url'), '/').$url;
+        }
+        if (str_starts_with($url, 'http://')) {
+            $url = 'https://'.substr($url, 7);
+        }
+
+        return $url;
+    }
+}

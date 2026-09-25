@@ -22,7 +22,8 @@ class GoogleProductMapper
 
         $primary = $product->primary_image;
         $images = $product->images;
-        $currency = (string) ($product->currency ?: config('feed.currency', 'CHF'));
+        $currency = (string) config('feed.currency', config('merchant.currency', 'CHF'));
+        if ($currency !== 'CHF') { $currency = 'CHF'; }
         $price = (float) $product->price;
         $regular = (float) ($product->regular_price ?: $product->price);
         // Do not publish sale_price / strike-through unless reference prices are verified (GMC).
@@ -31,12 +32,15 @@ class GoogleProductMapper
         $brand = $this->resolveBrand($product);
         $gtin = Gtin::normalize($product->gtin);
         $mpn = trim((string) ($product->sku ?? ''));
-        $mpn = $mpn !== '' ? $mpn : null;
+        if ($mpn === '') {
+            // GMC: without GTIN, brand + MPN is required. Use stable internal MPN.
+            $mpn = 'HB-'.(string) $product->id;
+        }
 
         $additional = $images
             ->reject(fn ($img) => $primary && $img->id === $primary->id)
             ->take(10)
-            ->map(fn ($img) => $img->url)
+            ->map(fn ($img) => gmc_absolute_url($img->url))
             ->values()
             ->all();
 
@@ -52,8 +56,8 @@ class GoogleProductMapper
                 $product->description ?: $product->short_description,
                 (string) $product->name
             ),
-            link: route('product.show', $product->slug),
-            imageLink: $primary->url,
+            link: gmc_absolute_url(route('product.show', $product->slug)),
+            imageLink: gmc_absolute_url($primary->url),
             additionalImageLinks: $additional,
             availability: $product->in_stock ? Availability::InStock->value : Availability::OutOfStock->value,
             condition: (string) config('feed.condition', 'new'),
@@ -68,7 +72,7 @@ class GoogleProductMapper
             productType: $product->categories->pluck('name')->filter()->implode(' > '),
             shippingWeight: $weight,
             contentLanguage: (string) config('feed.content_language', 'de'),
-            targetCountry: (string) config('feed.target_country', 'CH'),
+            targetCountry: (string) (config('feed.target_country', config('merchant.target_country', 'CH')) ?: 'CH'),
             priceAmount: $price,
             currency: $currency,
             inStock: (bool) $product->in_stock,
