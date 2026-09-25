@@ -1,0 +1,1346 @@
+{
+  "categories": [
+    {
+      "name": "Pelletöfen",
+      "slug": "pelletoefen",
+      "description": "Pelletöfen mit hohem Wirkungsgrad, Programmierung, Autonomie und Bedienkomfort."
+    },
+    {
+      "name": "Kaminöfen",
+      "slug": "kaminoefen",
+      "description": "Scheitholzöfen: strahlende Wärme, geschlossener Feuerraum und sichtbare Flamme."
+    },
+    {
+      "name": "Kamineinsätze",
+      "slug": "kamineinsaetze",
+      "description": "Kamineinsätze und geschlossene Feuerräume, die einen offenen Kamin in eine leistungsfähige Heizung verwandeln."
+    }
+  ],
+  "products": [
+    {
+      "source_id": 900000,
+      "name": "Invicta Lodi 10",
+      "slug": "invicta-lodi-10",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Stahl, 108 kg, Flamme Verte 6 Sterne",
+      "description": "<p>Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Stahl, 108 kg, Flamme Verte 6 Sterne</p><ul><li>Leistung: 10 kW</li><li>Wirkungsgrad: 86 %</li><li>Heizvolumen: 300 m³</li><li>Empfohlene Fläche: 120 m²</li><li>Material: Stahl</li><li>Gewicht: 108 kg</li></ul>",
+      "permalink": null,
+      "price": 1950.0,
+      "regular_price": 1950.0,
+      "sale_price": 1950.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "108",
+      "formatted_weight": "108 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-lodi-10",
+          "alt": "Invicta Lodi 10",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-flames-in-a-metal-furnace-39185938/",
+          "photographer": "Blackcurrant Great"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-lodi",
+      "gtin": null
+    },
+    {
+      "source_id": 900001,
+      "name": "Sannover Anita 7,6 kW Steel",
+      "slug": "sannover-anita-7-6-kw-steel",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7,6 kW, 60 m², Pellets, Wirkungsgrad 88 %, Wärmeverteilung ein Raum, Fernbedienung, Stahl, 50 kg",
+      "description": "<p>Pelletofen, 7,6 kW, 60 m², Pellets, Wirkungsgrad 88 %, Wärmeverteilung ein Raum, Fernbedienung, Stahl, 50 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 7,6 kW</li><li>Wirkungsgrad: 88 %</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Stahl</li><li>Gewicht: 50 kg</li></ul>",
+      "permalink": null,
+      "price": 686.9,
+      "regular_price": 686.9,
+      "sale_price": 686.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "50",
+      "formatted_weight": "50 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-7-6-kw-steel",
+          "alt": "Sannover Anita 7,6 kW Steel",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-a-fireplace-24829749/",
+          "photographer": "Chris Door"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900002,
+      "name": "FM Kaminofen",
+      "slug": "fm-kaminofen",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kaminofen, Scheite, Holz und Holzkohle, Geschlossener Feuerraum (type 1), Stahl",
+      "description": "<p>Kaminofen, Scheite, Holz und Holzkohle, Geschlossener Feuerraum (type 1), Stahl</p><ul><li>Material: Stahl</li></ul>",
+      "permalink": null,
+      "price": 325.63,
+      "regular_price": 325.63,
+      "sale_price": 325.63,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kaminoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-bois/fm-poele-a-bois",
+          "alt": "FM Kaminofen",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-a-fireplace-24829749/",
+          "photographer": "Chris Door"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900003,
+      "name": "Invicta Lodi 8",
+      "slug": "invicta-lodi-8",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 8 kW, Heizvolumen 240 m³, 100 m², Wirkungsgrad 90 %, Externe Luftzufuhr, Stahl, 108 kg, Flamme Verte 7 Sterne",
+      "description": "<p>Pelletofen, 8 kW, Heizvolumen 240 m³, 100 m², Wirkungsgrad 90 %, Externe Luftzufuhr, Stahl, 108 kg, Flamme Verte 7 Sterne</p><ul><li>Leistung: 8 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 240 m³</li><li>Empfohlene Fläche: 100 m²</li><li>Material: Stahl</li><li>Gewicht: 108 kg</li></ul>",
+      "permalink": null,
+      "price": 1800.0,
+      "regular_price": 1800.0,
+      "sale_price": 1800.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "108",
+      "formatted_weight": "108 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-lodi-8",
+          "alt": "Invicta Lodi 8",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/traditional-turkish-stove-with-teapots-and-wood-36803100/",
+          "photographer": "Zülfü Demir📸"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-lodi",
+      "gtin": null
+    },
+    {
+      "source_id": 900004,
+      "name": "Godin Pelletofen Estray",
+      "slug": "godin-pelletofen-estray",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 9 kW, Wirkungsgrad 91 %, Wi-Fi, Stahl, 116 kg, Flamme Verte 7 Sterne, Hergestellt in Frankreich",
+      "description": "<p>Pelletofen, 9 kW, Wirkungsgrad 91 %, Wi-Fi, Stahl, 116 kg, Flamme Verte 7 Sterne, Hergestellt in Frankreich</p><ul><li>Energieklasse: A+</li><li>Leistung: 9 kW</li><li>Wirkungsgrad: 91 %</li><li>Material: Stahl</li><li>Gewicht: 116 kg</li></ul>",
+      "permalink": null,
+      "price": 3853.66,
+      "regular_price": 3853.66,
+      "sale_price": 3853.66,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "116",
+      "formatted_weight": "116 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/godin-poele-a-granules-estray",
+          "alt": "Godin Pelletofen Estray",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/fireplace-in-an-old-kitchen-14680655/",
+          "photographer": "Ravi Kant"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900005,
+      "name": "MCZ Feel Comfort Air Matic 12 Core R Maestro+ 12 kW",
+      "slug": "mcz-feel-comfort-air-matic-12-core-r-maestro-12-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 12 kW, Metall, Régulation Maestro, connecté",
+      "description": "<p>Pelletofen, 12 kW, Metall, Régulation Maestro, connecté</p><ul><li>Energieklasse: A+</li><li>Leistung: 12 kW</li><li>Material: Metall</li></ul>",
+      "permalink": null,
+      "price": 4706.91,
+      "regular_price": 4706.91,
+      "sale_price": 4706.91,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/mcz-feel-comfort-air-matic-12-core-r-maestro-12-kw",
+          "alt": "MCZ Feel Comfort Air Matic 12 Core R Maestro+ 12 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/smoke-coming-out-from-a-metal-pipe-8567156/",
+          "photographer": "Alexey Chudin"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900006,
+      "name": "La Nordica P70 Air Plus",
+      "slug": "la-nordica-p70-air-plus",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kamineinsatz à Pellets, 10 kW, Heizvolumen 287 m³, Wirkungsgrad 92 %, Wärmeverteilung mehrere Räume, Thermostat, 131 kg, 15a B-VG",
+      "description": "<p>Kamineinsatz à Pellets, 10 kW, Heizvolumen 287 m³, Wirkungsgrad 92 %, Wärmeverteilung mehrere Räume, Thermostat, 131 kg, 15a B-VG</p><ul><li>Leistung: 10 kW</li><li>Wirkungsgrad: 92 %</li><li>Heizvolumen: 287 m³</li><li>Gewicht: 131 kg</li></ul>",
+      "permalink": null,
+      "price": 2700.0,
+      "regular_price": 2700.0,
+      "sale_price": 2700.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "131",
+      "formatted_weight": "131 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kamineinsaetze"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/inserts/la-nordica-p70-air-plus",
+          "alt": "La Nordica P70 Air Plus",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-a-fireplace-24829749/",
+          "photographer": "Chris Door"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900007,
+      "name": "Austroflamm Clou Compact Pellet 6 kW",
+      "slug": "austroflamm-clou-compact-pellet-6-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 6 kW, Heizvolumen 165 m³, Aschekasten, Stahl, 114 kg, Flamme Verte, 2. BImSchV",
+      "description": "<p>Pelletofen, 6 kW, Heizvolumen 165 m³, Aschekasten, Stahl, 114 kg, Flamme Verte, 2. BImSchV</p><ul><li>Leistung: 6 kW</li><li>Heizvolumen: 165 m³</li><li>Material: Stahl</li><li>Gewicht: 114 kg</li></ul>",
+      "permalink": null,
+      "price": 7188.0,
+      "regular_price": 7188.0,
+      "sale_price": 7188.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "114",
+      "formatted_weight": "114 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/austroflamm-clou-compact-pellet-6-kw",
+          "alt": "Austroflamm Clou Compact Pellet 6 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/burning-bonfire-at-night-12950912/",
+          "photographer": "Arbër Berisha"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900008,
+      "name": "Sannover Anita Pelletofen raumluftunabhängig 12 kW Schwarz + Installationsset",
+      "slug": "sannover-anita-pelletofen-raumluftunabhangig-12-kw-schwarz-installationsset",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen raumluftunabhängig, 12 kW, Pellets, Kit d'installation inclus",
+      "description": "<p>Pelletofen raumluftunabhängig, 12 kW, Pellets, Kit d'installation inclus</p><ul><li>Leistung: 12 kW</li></ul>",
+      "permalink": null,
+      "price": 1168.9,
+      "regular_price": 1168.9,
+      "sale_price": 1168.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-poele-a-granules-etanche-12-kw-noir-kit-dinstallation",
+          "alt": "Sannover Anita Pelletofen raumluftunabhängig 12 kW Schwarz + Installationsset",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-burning-firewood-with-flames-37153567/",
+          "photographer": "River Augustin"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900009,
+      "name": "Invicta Adrano 7",
+      "slug": "invicta-adrano-7",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7 kW, Heizvolumen 210 m³, 85 m², Wirkungsgrad 90 %, Stahl, 83 kg, Flamme Verte 7 Sterne",
+      "description": "<p>Pelletofen, 7 kW, Heizvolumen 210 m³, 85 m², Wirkungsgrad 90 %, Stahl, 83 kg, Flamme Verte 7 Sterne</p><ul><li>Energieklasse: A+</li><li>Leistung: 7 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 210 m³</li><li>Empfohlene Fläche: 85 m²</li><li>Material: Stahl</li><li>Gewicht: 83 kg</li></ul>",
+      "permalink": null,
+      "price": 1650.0,
+      "regular_price": 1650.0,
+      "sale_price": 1650.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "83",
+      "formatted_weight": "83 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-adrano-7",
+          "alt": "Invicta Adrano 7",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/traditional-tea-brewing-in-giza-egypt-30711078/",
+          "photographer": "Khaled Ahmed"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-adrano-7",
+      "gtin": null
+    },
+    {
+      "source_id": 900010,
+      "name": "Interstoves Marina 11 kW raumluftunabhängig mit Rohrset",
+      "slug": "interstoves-marina-11-kw-raumluftunabhangig-mit-rohrset",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 11,1 kW, Wirkungsgrad 93 %, Externe Luftzufuhr, Stahl, 125 kg, Hergestellt in Frankreich",
+      "description": "<p>Pelletofen, 11,1 kW, Wirkungsgrad 93 %, Externe Luftzufuhr, Stahl, 125 kg, Hergestellt in Frankreich</p><ul><li>Leistung: 11,1 kW</li><li>Wirkungsgrad: 93 %</li><li>Material: Stahl</li><li>Gewicht: 125 kg</li></ul>",
+      "permalink": null,
+      "price": 1819.0,
+      "regular_price": 1819.0,
+      "sale_price": 1819.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "125",
+      "formatted_weight": "125 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/interstoves-marina-11-kw-etanche-avec-kit-conduit",
+          "alt": "Interstoves Marina 11 kW raumluftunabhängig mit Rohrset",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/black-coffee-pot-on-modern-kitchen-counter-37552794/",
+          "photographer": "Karla Kottmann"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900011,
+      "name": "Invicta Lodi 8 Schwarz WiFi",
+      "slug": "invicta-lodi-8-schwarz-wifi",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 8 kW, Heizvolumen 240 m³, 100 m², Wirkungsgrad 90 %, Externe Luftzufuhr, Wi-Fi, Stahl, 108 kg, Flamme Verte 7 Sterne",
+      "description": "<p>Pelletofen, 8 kW, Heizvolumen 240 m³, 100 m², Wirkungsgrad 90 %, Externe Luftzufuhr, Wi-Fi, Stahl, 108 kg, Flamme Verte 7 Sterne</p><ul><li>Leistung: 8 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 240 m³</li><li>Empfohlene Fläche: 100 m²</li><li>Material: Stahl</li><li>Gewicht: 108 kg</li></ul>",
+      "permalink": null,
+      "price": 1800.0,
+      "regular_price": 1800.0,
+      "sale_price": 1800.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "108",
+      "formatted_weight": "108 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-lodi-8-noir-wifi",
+          "alt": "Invicta Lodi 8 Schwarz WiFi",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/photography-of-kettle-near-smoke-792615/",
+          "photographer": "Barbara Webb"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-lodi",
+      "gtin": null
+    },
+    {
+      "source_id": 900012,
+      "name": "Sannover Anita 7,6 kW Steel Bordeaux",
+      "slug": "sannover-anita-7-6-kw-steel-bordeaux",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg",
+      "description": "<p>Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 7,6 kW</li><li>Wirkungsgrad: 88 %</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Stahl</li><li>Gewicht: 50 kg</li></ul>",
+      "permalink": null,
+      "price": 686.9,
+      "regular_price": 686.9,
+      "sale_price": 686.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "50",
+      "formatted_weight": "50 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-7-6-kw-steel-bordeaux",
+          "alt": "Sannover Anita 7,6 kW Steel Bordeaux",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/house-in-village-18465390/",
+          "photographer": "Nadin Nadin"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900013,
+      "name": "Invicta Lodi 10 Grau WiFi",
+      "slug": "invicta-lodi-10-grau-wifi",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Wi-Fi, Stahl, 108 kg, Flamme Verte 6 Sterne",
+      "description": "<p>Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Wi-Fi, Stahl, 108 kg, Flamme Verte 6 Sterne</p><ul><li>Leistung: 10 kW</li><li>Wirkungsgrad: 86 %</li><li>Heizvolumen: 300 m³</li><li>Empfohlene Fläche: 120 m²</li><li>Material: Stahl</li><li>Gewicht: 108 kg</li></ul>",
+      "permalink": null,
+      "price": 1950.0,
+      "regular_price": 1950.0,
+      "sale_price": 1950.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "108",
+      "formatted_weight": "108 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-lodi-10-gris-wifi",
+          "alt": "Invicta Lodi 10 Grau WiFi",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/plates-and-clear-wine-glasses-on-white-wooden-kitchen-cabinet-5556176/",
+          "photographer": "Hakim  Santoso"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-lodi",
+      "gtin": null
+    },
+    {
+      "source_id": 900014,
+      "name": "Sannover Air Anita",
+      "slug": "sannover-air-anita",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 10 kW, 223 m², Wirkungsgrad 94 %, Freistehend, Stahl, 78 kg, Flamme Verte 7 Sterne",
+      "description": "<p>Pelletofen, 10 kW, 223 m², Wirkungsgrad 94 %, Freistehend, Stahl, 78 kg, Flamme Verte 7 Sterne</p><ul><li>Energieklasse: A+</li><li>Leistung: 10 kW</li><li>Wirkungsgrad: 94 %</li><li>Empfohlene Fläche: 223 m²</li><li>Material: Stahl</li><li>Gewicht: 78 kg</li></ul>",
+      "permalink": null,
+      "price": 777.9,
+      "regular_price": 777.9,
+      "sale_price": 777.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "78",
+      "formatted_weight": "78 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-air-anita",
+          "alt": "Sannover Air Anita",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-a-small-iron-cauldron-for-outdoor-cooking-8567153/",
+          "photographer": "Alexey Chudin"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900015,
+      "name": "Invicta Adrano 7 Schwarz (640994)",
+      "slug": "invicta-adrano-7-schwarz-640994",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7 kW, Heizvolumen 210 m³, 85 m², Wirkungsgrad 90 %, Stahl, 83 kg, Flamme Verte 7 Sterne",
+      "description": "<p>Pelletofen, 7 kW, Heizvolumen 210 m³, 85 m², Wirkungsgrad 90 %, Stahl, 83 kg, Flamme Verte 7 Sterne</p><ul><li>Energieklasse: A+</li><li>Leistung: 7 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 210 m³</li><li>Empfohlene Fläche: 85 m²</li><li>Material: Stahl</li><li>Gewicht: 83 kg</li></ul>",
+      "permalink": null,
+      "price": 1650.0,
+      "regular_price": 1650.0,
+      "sale_price": 1650.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "83",
+      "formatted_weight": "83 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-adrano-7-noir-640994",
+          "alt": "Invicta Adrano 7 Schwarz (640994)",
+          "source": null,
+          "position": 0,
+          "is_primary": true
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-adrano-7",
+      "gtin": null
+    },
+    {
+      "source_id": 900016,
+      "name": "La Nordica Comfort P85 Plus",
+      "slug": "la-nordica-comfort-p85-plus",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kamineinsatz à Pellets, 12 kW, Heizvolumen 344 m³, Wirkungsgrad 91 %, Stahl, 160 kg",
+      "description": "<p>Kamineinsatz à Pellets, 12 kW, Heizvolumen 344 m³, Wirkungsgrad 91 %, Stahl, 160 kg</p><ul><li>Leistung: 12 kW</li><li>Wirkungsgrad: 91 %</li><li>Heizvolumen: 344 m³</li><li>Material: Stahl</li><li>Gewicht: 160 kg</li></ul>",
+      "permalink": null,
+      "price": 3500.0,
+      "regular_price": 3500.0,
+      "sale_price": 3500.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "160",
+      "formatted_weight": "160 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kamineinsaetze"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/inserts/la-nordica-comfort-p85-plus",
+          "alt": "La Nordica Comfort P85 Plus",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-flames-in-a-metal-furnace-39185938/",
+          "photographer": "Blackcurrant Great"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900017,
+      "name": "Invicta Lodi 10 Schwarz WiFi",
+      "slug": "invicta-lodi-10-schwarz-wifi",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Wi-Fi, Stahl, 108 kg, Flamme Verte 6 Sterne",
+      "description": "<p>Pelletofen, 10 kW, Heizvolumen 300 m³, 120 m², Wirkungsgrad 86 %, Wi-Fi, Stahl, 108 kg, Flamme Verte 6 Sterne</p><ul><li>Leistung: 10 kW</li><li>Wirkungsgrad: 86 %</li><li>Heizvolumen: 300 m³</li><li>Empfohlene Fläche: 120 m²</li><li>Material: Stahl</li><li>Gewicht: 108 kg</li></ul>",
+      "permalink": null,
+      "price": 1950.0,
+      "regular_price": 1950.0,
+      "sale_price": 1950.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "108",
+      "formatted_weight": "108 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/invicta-lodi-10-noir-wifi",
+          "alt": "Invicta Lodi 10 Schwarz WiFi",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/modern-luxury-living-room-with-bar-area-28822840/",
+          "photographer": "Pușcaș Adryan"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "invicta-lodi",
+      "gtin": null
+    },
+    {
+      "source_id": 900018,
+      "name": "Sannover Anita 7,6 kW Steel Weiss",
+      "slug": "sannover-anita-7-6-kw-steel-weiss",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg",
+      "description": "<p>Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 7,6 kW</li><li>Wirkungsgrad: 88 %</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Stahl</li><li>Gewicht: 50 kg</li></ul>",
+      "permalink": null,
+      "price": 686.9,
+      "regular_price": 686.9,
+      "sale_price": 686.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "50",
+      "formatted_weight": "50 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-7-6-kw-steel-white",
+          "alt": "Sannover Anita 7,6 kW Steel Weiss",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/abstract-color-painting-on-white-painted-wall-1067556/",
+          "photographer": "Steve A Johnson"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900019,
+      "name": "Invicta Sedan S",
+      "slug": "invicta-sedan-s",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kaminofen, Heizvolumen 150 m³, 60 m², Scheite (44 cm max.), Wirkungsgrad 72 %, Bodenschutzplatte Gusseisen, Stahl, 84 kg, Flamme Verte 5 Sterne, Hergestellt in Frankreich",
+      "description": "<p>Kaminofen, Heizvolumen 150 m³, 60 m², Scheite (44 cm max.), Wirkungsgrad 72 %, Bodenschutzplatte Gusseisen, Stahl, 84 kg, Flamme Verte 5 Sterne, Hergestellt in Frankreich</p><ul><li>Energieklasse: A</li><li>Wirkungsgrad: 72 %</li><li>Heizvolumen: 150 m³</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Gusseisen</li><li>Gewicht: 84 kg</li></ul>",
+      "permalink": null,
+      "price": 1590.0,
+      "regular_price": 1590.0,
+      "sale_price": 1590.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "84",
+      "formatted_weight": "84 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kaminoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-bois/invicta-sedan-s",
+          "alt": "Invicta Sedan S",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-flames-in-a-metal-furnace-39185938/",
+          "photographer": "Blackcurrant Great"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900020,
+      "name": "Sannover Anita 7,6 kW Steel Schwarz",
+      "slug": "sannover-anita-7-6-kw-steel-schwarz",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg",
+      "description": "<p>Pelletofen, 7,6 kW, 60 m², Wirkungsgrad 88 %, Fernbedienung, Stahl, 50 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 7,6 kW</li><li>Wirkungsgrad: 88 %</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Stahl</li><li>Gewicht: 50 kg</li></ul>",
+      "permalink": null,
+      "price": 686.9,
+      "regular_price": 686.9,
+      "sale_price": 686.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "50",
+      "formatted_weight": "50 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-7-6-kw-steel-black",
+          "alt": "Sannover Anita 7,6 kW Steel Schwarz",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/closed-white-wooden-cabinet-245207/",
+          "photographer": "ATBO"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900021,
+      "name": "La Nordica Luisella 5.0 Maxi 7 kW Schwarz",
+      "slug": "la-nordica-luisella-5-0-maxi-7-kw-schwarz",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7 kW, Metall, finition noire",
+      "description": "<p>Pelletofen, 7 kW, Metall, finition noire</p><ul><li>Leistung: 7 kW</li><li>Material: Metall</li></ul>",
+      "permalink": null,
+      "price": 1650.0,
+      "regular_price": 1650.0,
+      "sale_price": 1650.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/la-nordica-luisella-5-0-maxi-7-kw-black",
+          "alt": "La Nordica Luisella 5.0 Maxi 7 kW Schwarz",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/modern-wooden-floor-lamp-in-minimalist-setting-38014632/",
+          "photographer": "Pușcaș Adryan"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "la-nordica-luisella-5-0-maxi-7-kw",
+      "gtin": null
+    },
+    {
+      "source_id": 900022,
+      "name": "Sannover Flavia Pelletofen Air 9,5 kW Stahl Schwarz",
+      "slug": "sannover-flavia-pelletofen-air-9-5-kw-stahl-schwarz",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 9,5 kW, Fernbedienung, Wochenprogramm, Stahl",
+      "description": "<p>Pelletofen, 9,5 kW, Fernbedienung, Wochenprogramm, Stahl</p><ul><li>Energieklasse: A+</li><li>Leistung: 9,5 kW</li><li>Material: Stahl</li></ul>",
+      "permalink": null,
+      "price": 904.9,
+      "regular_price": 904.9,
+      "sale_price": 904.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-flavia-poele-a-granules-air-9-5-kw-acier-noir",
+          "alt": "Sannover Flavia Pelletofen Air 9,5 kW Stahl Schwarz",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-a-wooden-chair-11112732/",
+          "photographer": "Ksenia Chernaya"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900023,
+      "name": "La Nordica Extraflame Teodora Evo 8 kW",
+      "slug": "la-nordica-extraflame-teodora-evo-8-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 8 kW, Heizvolumen 229 m³, Wirkungsgrad 91 %, Wärmeverteilung ein Raum, 139 kg",
+      "description": "<p>Pelletofen, 8 kW, Heizvolumen 229 m³, Wirkungsgrad 91 %, Wärmeverteilung ein Raum, 139 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 8 kW</li><li>Wirkungsgrad: 91 %</li><li>Heizvolumen: 229 m³</li><li>Gewicht: 139 kg</li></ul>",
+      "permalink": null,
+      "price": 2600.0,
+      "regular_price": 2600.0,
+      "sale_price": 2600.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "139",
+      "formatted_weight": "139 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/la-nordica-extraflame-teodora-evo-8-kw",
+          "alt": "La Nordica Extraflame Teodora Evo 8 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/elegant-yellow-woven-texture-lounge-chair-31361660/",
+          "photographer": "Hossam Rabea"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900024,
+      "name": "Sannover Anita 10 kW raumluftunabhängig Bordeaux",
+      "slug": "sannover-anita-10-kw-raumluftunabhangig-bordeaux",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen raumluftunabhängig, 10 kW, Heizvolumen 285 m³, Freistehend, 95 kg",
+      "description": "<p>Pelletofen raumluftunabhängig, 10 kW, Heizvolumen 285 m³, Freistehend, 95 kg</p><ul><li>Leistung: 10 kW</li><li>Heizvolumen: 285 m³</li><li>Gewicht: 95 kg</li></ul>",
+      "permalink": null,
+      "price": 777.9,
+      "regular_price": 777.9,
+      "sale_price": 777.9,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "95",
+      "formatted_weight": "95 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-10-kw-etanche-bordeaux",
+          "alt": "Sannover Anita 10 kW raumluftunabhängig Bordeaux",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/minimalist-bust-sculpture-on-wooden-shelf-32541183/",
+          "photographer": "BOB oj"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900025,
+      "name": "La Nordica Marilena Plus Crystal",
+      "slug": "la-nordica-marilena-plus-crystal",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 8 kW, Heizvolumen 230 m³, Wirkungsgrad 91 %, Wärmeverteilung mehrere Räume, Stahl, 135 kg, EcoDesign 2022, CE",
+      "description": "<p>Pelletofen, 8 kW, Heizvolumen 230 m³, Wirkungsgrad 91 %, Wärmeverteilung mehrere Räume, Stahl, 135 kg, EcoDesign 2022, CE</p><ul><li>Energieklasse: A+</li><li>Leistung: 8 kW</li><li>Wirkungsgrad: 91 %</li><li>Heizvolumen: 230 m³</li><li>Material: Stahl</li><li>Gewicht: 135 kg</li></ul>",
+      "permalink": null,
+      "price": 2900.0,
+      "regular_price": 2900.0,
+      "sale_price": 2900.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "135",
+      "formatted_weight": "135 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/la-nordica-marilena-plus-crystal",
+          "alt": "La Nordica Marilena Plus Crystal",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/a-leather-sofa-17264274/",
+          "photographer": "Marko Stojkovic"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900026,
+      "name": "Godin Estray 9 kW",
+      "slug": "godin-estray-9-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 9 kW, Wirkungsgrad 91 %, 116 kg, Flamme Verte 7 Sterne, Hergestellt in Frankreich",
+      "description": "<p>Pelletofen, 9 kW, Wirkungsgrad 91 %, 116 kg, Flamme Verte 7 Sterne, Hergestellt in Frankreich</p><ul><li>Leistung: 9 kW</li><li>Wirkungsgrad: 91 %</li><li>Gewicht: 116 kg</li></ul>",
+      "permalink": null,
+      "price": 3703.39,
+      "regular_price": 3703.39,
+      "sale_price": 3703.39,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "116",
+      "formatted_weight": "116 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/godin-estray-9-kw",
+          "alt": "Godin Estray 9 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/smoke-from-a-bonfire-5573625/",
+          "photographer": "Olivia Cabello"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900027,
+      "name": "Sannover Flavia Pelletofen raumluftunabhängig 9,5 kW Schwarz",
+      "slug": "sannover-flavia-pelletofen-raumluftunabhangig-9-5-kw-schwarz",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen raumluftunabhängig, 9,5 kW, Pellets",
+      "description": "<p>Pelletofen raumluftunabhängig, 9,5 kW, Pellets</p><ul><li>Leistung: 9,5 kW</li></ul>",
+      "permalink": null,
+      "price": 1014.0,
+      "regular_price": 1014.0,
+      "sale_price": 1014.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-flavia-poele-a-granules-etanche-9-5-kw-noir",
+          "alt": "Sannover Flavia Pelletofen raumluftunabhängig 9,5 kW Schwarz",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/burning-wax-candles-19986299/",
+          "photographer": "ALOK DAS"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900028,
+      "name": "Invicta Sedan S Grau",
+      "slug": "invicta-sedan-s-grau",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kaminofen, Heizvolumen 150 m³, 60 m², Scheite (44 cm max.), Wirkungsgrad 72 %, Gusseisen, Stahl, 84 kg, Flamme Verte 5 Sterne, Hergestellt in Frankreich",
+      "description": "<p>Kaminofen, Heizvolumen 150 m³, 60 m², Scheite (44 cm max.), Wirkungsgrad 72 %, Gusseisen, Stahl, 84 kg, Flamme Verte 5 Sterne, Hergestellt in Frankreich</p><ul><li>Energieklasse: A</li><li>Wirkungsgrad: 72 %</li><li>Heizvolumen: 150 m³</li><li>Empfohlene Fläche: 60 m²</li><li>Material: Gusseisen</li><li>Gewicht: 84 kg</li></ul>",
+      "permalink": null,
+      "price": 1590.0,
+      "regular_price": 1590.0,
+      "sale_price": 1590.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "84",
+      "formatted_weight": "84 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kaminoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-bois/invicta-sedan-s-gris",
+          "alt": "Invicta Sedan S Grau",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/cozy-outdoor-fire-pit-with-burning-kindling-37153566/",
+          "photographer": "River Augustin"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900029,
+      "name": "La Nordica Comfort Idro L80",
+      "slug": "la-nordica-comfort-idro-l80",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Kamineinsatz hydro à Pellets, 19 kW, Heizvolumen 545 m³, 218 m², Wirkungsgrad 90 %, Diffusion mehrere Räume, Aschekasten, Reconnaissance der combustible, Stahl, 220 kg, 15a B-VG",
+      "description": "<p>Kamineinsatz hydro à Pellets, 19 kW, Heizvolumen 545 m³, 218 m², Wirkungsgrad 90 %, Diffusion mehrere Räume, Aschekasten, Reconnaissance der combustible, Stahl, 220 kg, 15a B-VG</p><ul><li>Energieklasse: A+</li><li>Leistung: 19 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 545 m³</li><li>Empfohlene Fläche: 218 m²</li><li>Material: Stahl</li><li>Gewicht: 220 kg</li></ul>",
+      "permalink": null,
+      "price": 4490.0,
+      "regular_price": 4490.0,
+      "sale_price": 4041.0,
+      "on_sale": true,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "220",
+      "formatted_weight": "220 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "kamineinsaetze"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/inserts/la-nordica-comfort-idro-l80",
+          "alt": "La Nordica Comfort Idro L80",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/metal-chimney-with-galvanized-cover-12271450/",
+          "photographer": "Barış Yiğit"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900030,
+      "name": "La Nordica Luisella 5.0 Maxi 7 kW",
+      "slug": "la-nordica-luisella-5-0-maxi-7-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 7 kW, Stahl",
+      "description": "<p>Pelletofen, 7 kW, Stahl</p><ul><li>Leistung: 7 kW</li><li>Material: Stahl</li></ul>",
+      "permalink": null,
+      "price": 1650.0,
+      "regular_price": 1650.0,
+      "sale_price": 1650.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/la-nordica-luisella-5-0-maxi-7-kw",
+          "alt": "La Nordica Luisella 5.0 Maxi 7 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-photo-of-burning-fire-12391921/",
+          "photographer": "Rahul Sapra"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "la-nordica-luisella-5-0-maxi-7-kw",
+      "gtin": null
+    },
+    {
+      "source_id": 900031,
+      "name": "Sannover Anita 12 kW",
+      "slug": "sannover-anita-12-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen, 10,6 kW, 120 m², Wirkungsgrad 89 %, Aschekasten, Stahl, 136 kg",
+      "description": "<p>Pelletofen, 10,6 kW, 120 m², Wirkungsgrad 89 %, Aschekasten, Stahl, 136 kg</p><ul><li>Energieklasse: A+</li><li>Leistung: 10,6 kW</li><li>Wirkungsgrad: 89 %</li><li>Empfohlene Fläche: 120 m²</li><li>Material: Stahl</li><li>Gewicht: 136 kg</li></ul>",
+      "permalink": null,
+      "price": 824.0,
+      "regular_price": 824.0,
+      "sale_price": 824.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "136",
+      "formatted_weight": "136 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-12-kw",
+          "alt": "Sannover Anita 12 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/photo-of-a-fire-12243892/",
+          "photographer": "Bruno Curly"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    },
+    {
+      "source_id": 900032,
+      "name": "FreePoint Atrium 5 Airtight 5,2 kW",
+      "slug": "freepoint-atrium-5-airtight-5-2-kw",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen raumluftunabhängig, 5,2 kW, Heizvolumen 125 m³, Wirkungsgrad 90 %, Fernbedienung, Metall, 59 kg, 2. BImSchV",
+      "description": "<p>Pelletofen raumluftunabhängig, 5,2 kW, Heizvolumen 125 m³, Wirkungsgrad 90 %, Fernbedienung, Metall, 59 kg, 2. BImSchV</p><ul><li>Energieklasse: A+</li><li>Leistung: 5,2 kW</li><li>Wirkungsgrad: 90 %</li><li>Heizvolumen: 125 m³</li><li>Material: Metall</li><li>Gewicht: 59 kg</li></ul>",
+      "permalink": null,
+      "price": 1800.0,
+      "regular_price": 1800.0,
+      "sale_price": 1800.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": "59",
+      "formatted_weight": "59 kg",
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/freepoint-atrium-5-airtight-5-2-kw",
+          "alt": "FreePoint Atrium 5 Airtight 5,2 kW",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-photo-of-a-person-holding-a-burning-palo-santo-holy-wood-8436503/",
+          "photographer": "Yan Krukau"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": null,
+      "gtin": null
+    },
+    {
+      "source_id": 900033,
+      "name": "Sannover Anita 9,4 kW raumluftunabhängig Schwarz",
+      "slug": "sannover-anita-9-4-kw-raumluftunabhangig-schwarz",
+      "sku": null,
+      "type": "simple",
+      "short_description": "Pelletofen raumluftunabhängig, 9,4 kW, Pellets",
+      "description": "<p>Pelletofen raumluftunabhängig, 9,4 kW, Pellets</p><ul><li>Leistung: 9,4 kW</li></ul>",
+      "permalink": null,
+      "price": 802.0,
+      "regular_price": 802.0,
+      "sale_price": 802.0,
+      "on_sale": false,
+      "currency": "CHF",
+      "in_stock": true,
+      "stock_availability": "Auf Lager",
+      "weight": null,
+      "formatted_weight": null,
+      "dimensions": null,
+      "average_rating": 0,
+      "review_count": 0,
+      "categories": [
+        "pelletoefen"
+      ],
+      "images": [
+        {
+          "file": "assets/images/oefen-kamine/ofens-a-pellets/sannover-anita-9-4-kw-etanche-noir",
+          "alt": "Sannover Anita 9,4 kW raumluftunabhängig Schwarz",
+          "position": 0,
+          "is_primary": true,
+          "source": "https://www.pexels.com/photo/close-up-of-fireplace-18691362/",
+          "photographer": "Camilo Laverde"
+        }
+      ],
+      "price_per_unit": null,
+      "price_per_unit_label": null,
+      "variant_group": "sannover-anita",
+      "gtin": null
+    }
+  ]
+}

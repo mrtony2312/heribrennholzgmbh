@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="30" viewBox="0 0 48 30" role="img" aria-label="Vorkasse / Überweisung">
+  <rect width="48" height="30" rx="4" fill="#fff" stroke="#e6e6e6"/>
+  <path d="M13 12l11-5 11 5M15 12v8m4-8v8m10-8v8m4-8v8M13 21h22" stroke="#4a4a4a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

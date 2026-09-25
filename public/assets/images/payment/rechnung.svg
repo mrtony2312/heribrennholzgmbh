@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="30" viewBox="0 0 48 30" role="img" aria-label="Kauf auf Rechnung">
+  <rect width="48" height="30" rx="4" fill="#fff" stroke="#e6e6e6"/>
+  <rect x="17" y="7" width="14" height="16" rx="1.5" fill="none" stroke="#4a4a4a" stroke-width="1.6"/>
+  <path d="M20 12h8M20 15.5h8M20 19h5" stroke="#4a4a4a" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+Allow: /storage
+Allow: /media
+Allow: /produkt
+Allow: /shop
+Allow: /feeds
+Allow: /assets
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /media
+Allow: /assets
+Allow: /storage
+
+User-agent: Storebot-Google
+Allow: /
+Allow: /storage
+Allow: /media
+Allow: /produkt
+Allow: /shop
+Allow: /feeds
+Allow: /assets
+
+Sitemap: /sitemap.xml

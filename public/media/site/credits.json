@@ -1,0 +1,127 @@
+[
+    {
+        "file": "assets/images/site/hero-1.jpg",
+        "photographer": "lil artsy",
+        "url": "https://www.pexels.com/photo/brown-and-black-firewoods-3750773/"
+    },
+    {
+        "file": "assets/images/site/hero-2.jpg",
+        "photographer": "Wolfgang Martin",
+        "url": "https://www.pexels.com/photo/burning-wood-on-the-ground-11652689/"
+    },
+    {
+        "file": "assets/images/site/hero-3.jpg",
+        "photographer": "Magda Ehlers",
+        "url": "https://www.pexels.com/photo/burning-wood-on-furnace-6747098/"
+    },
+    {
+        "file": "assets/images/site/banner-wide-1.jpg",
+        "photographer": "Gergely Meszárcsek",
+        "url": "https://www.pexels.com/photo/piled-up-wood-logs-5678854/"
+    },
+    {
+        "file": "assets/images/site/banner-wide-2.jpg",
+        "photographer": "Alexey Demidov",
+        "url": "https://www.pexels.com/photo/coal-embers-burning-at-night-9877234/"
+    },
+    {
+        "file": "assets/images/site/cta-1.jpg",
+        "photographer": "freestocks.org",
+        "url": "https://www.pexels.com/photo/black-wood-burner-391995/"
+    },
+    {
+        "file": "assets/images/site/cat-granules-de-bois.jpg",
+        "photographer": "RDNE Stock project",
+        "url": "https://www.pexels.com/photo/hand-drawing-out-seeds-in-bowl-7782871/"
+    },
+    {
+        "file": "assets/images/site/cat-buches.jpg",
+        "photographer": "Oscar Sánchez",
+        "url": "https://www.pexels.com/photo/stacked-firewood-in-close-up-photography-11483251/"
+    },
+    {
+        "file": "assets/images/site/cat-brennholz.jpg",
+        "photographer": "Alexis Caso",
+        "url": "https://www.pexels.com/photo/close-up-shot-of-wood-logs-6380751/"
+    },
+    {
+        "file": "assets/images/site/cat-bois-densifie.jpg",
+        "photographer": "RDNE Stock project",
+        "url": "https://www.pexels.com/photo/a-person-holding-stainless-bowl-7781984/"
+    },
+    {
+        "file": "assets/images/site/cat-bois-de-chauffage.jpg",
+        "photographer": "Vladislav Shurgin",
+        "url": "https://www.pexels.com/photo/burning-wood-on-fire-pit-4069255/"
+    },
+    {
+        "file": "assets/images/site/promo-1.jpg",
+        "photographer": "César Guillotel",
+        "url": "https://www.pexels.com/photo/rusty-ax-on-a-log-12665340/"
+    },
+    {
+        "file": "assets/images/site/promo-2.jpg",
+        "photographer": "Ivars",
+        "url": "https://www.pexels.com/photo/tree-logs-on-a-field-15128435/"
+    },
+    {
+        "file": "assets/images/site/about-1.jpg",
+        "photographer": "Markus Winkler",
+        "url": "https://www.pexels.com/photo/close-up-shot-of-a-pile-of-chopped-woods-9862136/"
+    },
+    {
+        "file": "assets/images/site/about-2.jpg",
+        "photographer": "Ivan S",
+        "url": "https://www.pexels.com/photo/an-axe-used-for-chopping-wood-9629952/"
+    },
+    {
+        "file": "assets/images/site/contact-1.jpg",
+        "photographer": "Photo Collections",
+        "url": "https://www.pexels.com/photo/logs-wood-wooden-logs-214031/"
+    },
+    {
+        "file": "assets/images/site/feature-delivery.jpg",
+        "photographer": "Jan 'Sob' Soběslav",
+        "url": "https://www.pexels.com/photo/a-pile-of-brown-wood-logs-13838910/"
+    },
+    {
+        "file": "assets/images/site/feature-quality.jpg",
+        "photographer": "Kai-Chieh Chan",
+        "url": "https://www.pexels.com/photo/stack-of-brown-wooden-logs-5803423/"
+    },
+    {
+        "file": "assets/images/site/feature-eco.jpg",
+        "photographer": "Martin Dalsgaard",
+        "url": "https://www.pexels.com/photo/close-photo-of-a-pile-wood-logs-7274849/"
+    },
+    {
+        "file": "assets/images/site/gallery-1.jpg",
+        "photographer": "Peter Fazekas",
+        "url": "https://www.pexels.com/photo/stacks-of-wooden-logs-10103516/"
+    },
+    {
+        "file": "assets/images/site/gallery-2.jpg",
+        "photographer": "From Salih",
+        "url": "https://www.pexels.com/photo/close-up-photograph-of-wood-burning-6278619/"
+    },
+    {
+        "file": "assets/images/site/gallery-3.jpg",
+        "photographer": "Photo Collections",
+        "url": "https://www.pexels.com/photo/action-axe-blur-chop-213942/"
+    },
+    {
+        "file": "assets/images/site/gallery-4.jpg",
+        "photographer": "Gaspar Zaldo",
+        "url": "https://www.pexels.com/photo/close-up-of-a-woman-holding-the-handle-of-a-fireplace-door-26224773/"
+    },
+    {
+        "file": "assets/images/site/gallery-5.jpg",
+        "photographer": "Mike van Schoonderwalt",
+        "url": "https://www.pexels.com/photo/clouds-above-seashore-5511000/"
+    },
+    {
+        "file": "assets/images/site/gallery-6.jpg",
+        "photographer": "Tuğba",
+        "url": "https://www.pexels.com/photo/firewood-beside-a-wall-14485322/"
+    }
+]
