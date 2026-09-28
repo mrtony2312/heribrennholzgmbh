@@ -59,6 +59,14 @@ class ProductInputBuilder
             $attributes['productTypes'] = [$item->productType];
         }
 
+        
+        $unitMeasure = $this->parseMeasure($item->unitPricingMeasure);
+        $unitBase = $this->parseBaseMeasure($item->unitPricingBaseMeasure);
+        if ($unitMeasure && $unitBase) {
+            $attributes['unitPricingMeasure'] = $unitMeasure;
+            $attributes['unitPricingBaseMeasure'] = $unitBase;
+        }
+
         $shippingWeight = $this->parseMeasure($item->shippingWeight);
         if ($shippingWeight) {
             $attributes['shippingWeight'] = $shippingWeight;
@@ -140,6 +148,27 @@ class ProductInputBuilder
 
         return [
             'value' => (float) $m[1],
+            'unit' => strtolower($m[2]),
+        ];
+    }
+
+    /**
+     * Feed string "1kg" → API {value: "1", unit: "kg"}.
+     *
+     * @return array{value: string, unit: string}|null
+     */
+    private function parseBaseMeasure(?string $base): ?array
+    {
+        if ($base === null || $base === '') {
+            return null;
+        }
+
+        if (! preg_match('/^(\d+)([a-z]+)$/i', trim($base), $m)) {
+            return null;
+        }
+
+        return [
+            'value' => $m[1],
             'unit' => strtolower($m[2]),
         ];
     }

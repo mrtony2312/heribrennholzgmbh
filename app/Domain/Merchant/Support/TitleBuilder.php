@@ -12,7 +12,8 @@ class TitleBuilder
         $title = preg_replace('/\s+/u', ' ', $title) ?? $title;
         $title = trim($title);
 
-        $title = preg_replace('/\b(SOLDE|PROMO|SALE|AKTION|RABATT)\b/iu', '', $title) ?? $title;
+        // Strip promotional / policy-risky tokens (Shopping ads policies / title attribute).
+        $title = preg_replace('/\b(SOLDE|PROMO|SALE|AKTION|RABATT|GRATIS|FREE SHIPPING)\b/iu', '', $title) ?? $title;
         $title = str_replace(['!!!', '…'], '', $title);
         $title = preg_replace('/[\x{1F300}-\x{1FAFF}]/u', '', $title) ?? $title;
         $title = preg_replace('/\s+/u', ' ', $title) ?? $title;
@@ -23,8 +24,13 @@ class TitleBuilder
         }
 
         $brand = trim($brand);
-        if ($brand !== '' && $brand !== 'Generic' && ! str_starts_with(mb_strtolower($title), mb_strtolower($brand))) {
-            $title = $brand.' '.$title;
+        if ($brand !== '' && $brand !== 'Generic') {
+            $lowerTitle = mb_strtolower($title);
+            $lowerBrand = mb_strtolower($brand);
+            // Prepend brand only when missing; avoid "Brand Brand Product".
+            if (! str_contains($lowerTitle, $lowerBrand)) {
+                $title = $brand.' '.$title;
+            }
         }
 
         return Str::limit(trim($title), 150, '');

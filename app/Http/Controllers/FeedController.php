@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Merchant\SafeFeedWriter;
 use App\Services\ProductFeed;
 use App\Services\ProductFeedTsv;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class FeedController extends Controller
 {
     public function __construct(
         private readonly ProductFeed $feed,
         private readonly ProductFeedTsv $feedTsv,
+        private readonly SafeFeedWriter $safeWriter,
     ) {
     }
 
@@ -20,7 +24,7 @@ class FeedController extends Controller
     {
         $this->guardToken($request);
 
-        return response($this->feed->toXml(), 200, [
+        return response($this->xmlPayload(), 200, [
             'Content-Type' => 'application/xml; charset=UTF-8',
             'Cache-Control' => 'public, max-age=900',
             'X-Robots-Tag' => 'noindex',
@@ -31,7 +35,7 @@ class FeedController extends Controller
     {
         $this->guardToken($request);
 
-        return response($this->feed->toXml(), 200, [
+        return response($this->xmlPayload(), 200, [
             'Content-Type' => 'application/xml; charset=UTF-8',
             'Content-Disposition' => 'attachment; filename="google-merchant-feed.xml"',
             'X-Robots-Tag' => 'noindex',
@@ -47,6 +51,20 @@ class FeedController extends Controller
             'Content-Disposition' => 'attachment; filename="google-merchant-feed.tsv"',
             'X-Robots-Tag' => 'noindex',
         ]);
+    }
+
+    private function xmlPayload(): string
+    {
+        try {
+            return $this->feed->toXml();
+        } catch (Throwable $e) {
+            Log::error('FeedController: generation failed, trying last-good', ['error' => $e->getMessage()]);
+            $fallback = $this->safeWriter->loadLastGoodXml();
+            if ($fallback !== null) {
+                return $fallback;
+            }
+            throw $e;
+        }
     }
 
     private function guardToken(Request $request): void

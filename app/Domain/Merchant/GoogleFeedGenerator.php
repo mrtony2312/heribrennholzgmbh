@@ -7,6 +7,12 @@ use App\DTO\Merchant\GoogleProductData;
 use App\Models\Product;
 use XMLWriter;
 
+/**
+ * Google Merchant Center RSS 2.0 product feed (CH / de / CHF).
+ *
+ * @see https://support.google.com/merchants/answer/14987622
+ * @see https://support.google.com/merchants/answer/7052112
+ */
 class GoogleFeedGenerator
 {
     public function __construct(private readonly GoogleProductMapper $mapper)
@@ -24,7 +30,7 @@ class GoogleFeedGenerator
         $w->writeAttribute('xmlns:g', 'http://base.google.com/ns/1.0');
         $w->startElement('channel');
         $w->writeElement('title', (string) config('feed.title'));
-        $w->writeElement('link', url('/'));
+        $w->writeElement('link', rtrim((string) config('app.url'), '/').'/');
         $w->writeElement('description', (string) config('feed.description'));
 
         Product::with(['images', 'categories'])
@@ -38,8 +44,8 @@ class GoogleFeedGenerator
                 }
             });
 
-        $w->endElement();
-        $w->endElement();
+        $w->endElement(); // channel
+        $w->endElement(); // rss
         $w->endDocument();
 
         return $w->outputMemory();
@@ -48,65 +54,86 @@ class GoogleFeedGenerator
     private function writeItem(XMLWriter $w, GoogleProductData $dto): void
     {
         $w->startElement('item');
-        $w->writeElement('g:id', $dto->id);
-        $w->writeElement('title', $dto->title);
-        $w->startElement('description');
+
+        // Required attributes (product data specification / free listings).
+        $this->g($w, 'id', $dto->id);
+        $this->g($w, 'title', $dto->title);
+        $w->startElement('g:description');
         $w->writeCdata($dto->description);
         $w->endElement();
-        $w->writeElement('link', $dto->link);
-        $w->writeElement('g:image_link', $dto->imageLink);
+        $this->g($w, 'link', $dto->link);
+        $this->g($w, 'image_link', $dto->imageLink);
+        $this->g($w, 'availability', $dto->availability);
+        $this->g($w, 'condition', $dto->condition);
+        $this->g($w, 'price', $dto->price);
+        $this->g($w, 'brand', $dto->brand);
+
+        if ($dto->salePrice) {
+            $this->g($w, 'sale_price', $dto->salePrice);
+        }
 
         foreach ($dto->additionalImageLinks as $url) {
-            $w->writeElement('g:additional_image_link', $url);
+            if ($url !== '') {
+                $this->g($w, 'additional_image_link', $url);
+            }
         }
 
-        $w->writeElement('g:availability', $dto->availability);
-        $w->writeElement('g:condition', $dto->condition);
-        $w->writeElement('g:price', $dto->price);
-        if ($dto->salePrice) {
-            $w->writeElement('g:sale_price', $dto->salePrice);
-        }
-        $w->writeElement('g:brand', $dto->brand);
-
+        // Unique product identifiers (brand + GTIN and/or MPN).
         if ($dto->gtin) {
-            $w->writeElement('g:gtin', $dto->gtin);
+            $this->g($w, 'gtin', $dto->gtin);
         }
         if ($dto->mpn) {
-            $w->writeElement('g:mpn', $dto->mpn);
+            $this->g($w, 'mpn', $dto->mpn);
         }
         if (! $dto->identifierExists) {
-            $w->writeElement('g:identifier_exists', 'no');
+            $this->g($w, 'identifier_exists', 'false');
         }
+
         if ($dto->itemGroupId) {
-            $w->writeElement('g:item_group_id', $dto->itemGroupId);
+            $this->g($w, 'item_group_id', $dto->itemGroupId);
         }
         if ($dto->googleProductCategory !== '') {
-            $w->writeElement('g:google_product_category', $dto->googleProductCategory);
+            $this->g($w, 'google_product_category', $dto->googleProductCategory);
         }
         if ($dto->productType !== '') {
-            $w->writeElement('g:product_type', $dto->productType);
+            $this->g($w, 'product_type', $dto->productType);
         }
         if ($dto->shippingWeight) {
-            $w->writeElement('g:shipping_weight', $dto->shippingWeight);
+            $this->g($w, 'shipping_weight', $dto->shippingWeight);
+        }
+        if ($dto->unitPricingMeasure) {
+            $this->g($w, 'unit_pricing_measure', $dto->unitPricingMeasure);
+            if ($dto->unitPricingBaseMeasure) {
+                $this->g($w, 'unit_pricing_base_measure', $dto->unitPricingBaseMeasure);
+            }
         }
 
-        $w->writeElement('g:content_language', $dto->contentLanguage);
-        $w->writeElement('g:target_country', $dto->targetCountry);
-
+        // CH-only shipping with handling + transit (required market: Switzerland).
         $shipPrice = PriceFormatter::format((float) config('feed.shipping_price', 0), $dto->currency);
-
         foreach ((array) config('feed.shipping_countries', ['CH']) as $country) {
+            if ((string) $country !== 'CH') {
+                continue;
+            }
             $w->startElement('g:shipping');
-            $w->writeElement('g:country', (string) $country);
-            $w->writeElement('g:service', (string) config('feed.shipping_service'));
-            $w->writeElement('g:price', $shipPrice);
-            $w->writeElement('g:min_handling_time', (string) (int) config('feed.shipping_handling_time_min', 1));
-            $w->writeElement('g:max_handling_time', (string) (int) config('feed.shipping_handling_time_max', 1));
-            $w->writeElement('g:min_transit_time', (string) (int) config('feed.shipping_transit_time_min', 0));
-            $w->writeElement('g:max_transit_time', (string) (int) config('feed.shipping_transit_time_max', 1));
+            $this->g($w, 'country', 'CH');
+            $this->g($w, 'service', (string) config('feed.shipping_service'));
+            $this->g($w, 'price', $shipPrice);
+            $this->g($w, 'min_handling_time', (string) (int) config('feed.shipping_handling_time_min', 1));
+            $this->g($w, 'max_handling_time', (string) (int) config('feed.shipping_handling_time_max', 1));
+            $this->g($w, 'min_transit_time', (string) (int) config('feed.shipping_transit_time_min', 0));
+            $this->g($w, 'max_transit_time', (string) (int) config('feed.shipping_transit_time_max', 1));
             $w->endElement();
         }
 
-        $w->endElement();
+        $w->endElement(); // item
+    }
+
+    private function g(XMLWriter $w, string $name, string $value): void
+    {
+        if ($value === '') {
+            return;
+        }
+
+        $w->writeElement('g:'.$name, $value);
     }
 }

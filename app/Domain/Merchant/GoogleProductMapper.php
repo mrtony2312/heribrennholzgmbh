@@ -7,6 +7,7 @@ use App\Domain\Merchant\Support\DescriptionSanitizer;
 use App\Domain\Merchant\Support\Gtin;
 use App\Domain\Merchant\Support\PriceFormatter;
 use App\Domain\Merchant\Support\TitleBuilder;
+use App\Domain\Merchant\Support\UnitPricingResolver;
 use App\DTO\Merchant\GoogleProductData;
 use App\Models\Product;
 
@@ -22,32 +23,30 @@ class GoogleProductMapper
 
         $primary = $product->primary_image;
         $images = $product->images;
-        $currency = (string) config('feed.currency', config('merchant.currency', 'CHF'));
-        if ($currency !== 'CHF') { $currency = 'CHF'; }
+        $currency = 'CHF';
         $price = (float) $product->price;
         $regular = (float) ($product->regular_price ?: $product->price);
-        // Do not publish sale_price / strike-through unless reference prices are verified (GMC).
+
+        // sale_price only when reference / strike-through prices are verified (misrepresentation risk).
         $referenceVerified = (bool) config('merchant.reference_prices_verified', false);
         $onSale = $referenceVerified && (bool) $product->on_sale && $regular > $price;
+
         $brand = $this->resolveBrand($product);
         $gtin = Gtin::normalize($product->gtin);
         $mpn = trim((string) ($product->sku ?? ''));
         if ($mpn === '') {
-            // GMC: without GTIN, brand + MPN is required. Use stable internal MPN.
             $mpn = 'HB-'.(string) $product->id;
         }
+
+        $unit = UnitPricingResolver::resolve($product);
 
         $additional = $images
             ->reject(fn ($img) => $primary && $img->id === $primary->id)
             ->take(10)
             ->map(fn ($img) => gmc_absolute_url($img->url))
+            ->filter()
             ->values()
             ->all();
-
-        $weight = null;
-        if (! empty($product->weight) && is_numeric($product->weight)) {
-            $weight = rtrim(rtrim(number_format((float) $product->weight, 2, '.', ''), '0'), '.').' kg';
-        }
 
         return new GoogleProductData(
             id: (string) $product->id,
@@ -66,13 +65,15 @@ class GoogleProductMapper
             brand: $brand,
             gtin: $gtin,
             mpn: $mpn,
-            identifierExists: $gtin !== null || $mpn !== null,
+            identifierExists: true,
             itemGroupId: $product->item_group_id ? (string) $product->item_group_id : null,
             googleProductCategory: $this->googleCategory($product),
             productType: $product->categories->pluck('name')->filter()->implode(' > '),
-            shippingWeight: $weight,
-            contentLanguage: (string) config('feed.content_language', 'de'),
-            targetCountry: (string) (config('feed.target_country', config('merchant.target_country', 'CH')) ?: 'CH'),
+            shippingWeight: $unit['shipping_weight'],
+            unitPricingMeasure: $unit['measure'],
+            unitPricingBaseMeasure: $unit['base'],
+            contentLanguage: 'de',
+            targetCountry: 'CH',
             priceAmount: $price,
             currency: $currency,
             inStock: (bool) $product->in_stock,
@@ -116,7 +117,7 @@ class GoogleProductMapper
             }
         }
 
-        $fallback = trim((string) config('feed.brand', 'Heri Brennholz'));
+        $fallback = trim((string) config('feed.brand', config('merchant.default_brand', 'Heri Brennholz')));
 
         return $fallback !== '' ? $fallback : 'Heri Brennholz';
     }
@@ -130,6 +131,6 @@ class GoogleProductMapper
             return (string) $map[$slug];
         }
 
-        return (string) config('feed.google_product_category');
+        return (string) config('feed.google_product_category', '6229');
     }
 }

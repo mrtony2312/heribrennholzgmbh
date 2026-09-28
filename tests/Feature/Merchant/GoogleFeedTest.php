@@ -30,10 +30,15 @@ class GoogleFeedTest extends TestCase
         $xml = $response->getContent();
 
         $this->assertStringContainsString('<g:id>'.$product->id.'</g:id>', $xml);
+        $this->assertStringContainsString('<g:title>', $xml);
         $this->assertStringContainsString('<g:price>49.50 CHF</g:price>', $xml);
-        $this->assertStringContainsString('<title>', $xml);
+        $this->assertStringContainsString('<g:availability>in_stock</g:availability>', $xml);
+        $this->assertStringContainsString('<g:condition>new</g:condition>', $xml);
+        $this->assertStringContainsString('<g:brand>', $xml);
+        $this->assertStringContainsString('<g:mpn>', $xml);
         $this->assertStringContainsString('g:country>CH</g:country>', $xml);
         $this->assertStringContainsString('1–2 Werktage', $xml);
+        $this->assertStringNotContainsString('g:country>DE</g:country>', $xml);
         $this->assertStringNotContainsString('Liechtenstein', $xml);
         $this->assertStringNotContainsString('Deutschland', $xml);
     }

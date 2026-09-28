@@ -3,16 +3,39 @@
 namespace App\Services;
 
 use App\Domain\Merchant\GoogleProductMapper;
+use App\Domain\Merchant\Support\PriceFormatter;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 
 class ProductFeedTsv
 {
+    /**
+     * Tab-delimited Google Merchant feed headers (CH / de / CHF).
+     *
+     * @see https://support.google.com/merchants/answer/7052112
+     */
     private const HEADERS = [
-        'id', 'title', 'description', 'link', 'image_link', 'availability',
-        'price', 'sale_price', 'brand', 'gtin', 'mpn', 'condition',
-        'google_product_category', 'product_type', 'item_group_id',
-        'shipping(country:service:price)', 'identifier_exists',
+        'id',
+        'title',
+        'description',
+        'link',
+        'image_link',
+        'additional_image_link',
+        'availability',
+        'condition',
+        'price',
+        'sale_price',
+        'brand',
+        'gtin',
+        'mpn',
+        'identifier_exists',
+        'item_group_id',
+        'google_product_category',
+        'product_type',
+        'shipping_weight',
+        'unit_pricing_measure',
+        'unit_pricing_base_measure',
+        'shipping(country:service:price:min_handling_time:max_handling_time:min_transit_time:max_transit_time)',
     ];
 
     public function __construct(private readonly GoogleProductMapper $mapper)
@@ -22,12 +45,22 @@ class ProductFeedTsv
     public function toTsv(): string
     {
         $ttl = (int) config('feed.cache_ttl');
-
-        if ($ttl > 0) {
-            return Cache::remember('product_feed_google_tsv', $ttl, fn () => $this->build());
+        $cached = $ttl > 0 ? Cache::get('product_feed_google_tsv') : null;
+        if (is_string($cached) && substr_count($cached, "\n") > 1) {
+            return $cached;
         }
 
-        return $this->build();
+        $body = $this->build();
+        // Header-only TSV = 0 products — do not cache / return as success path for writers.
+        if (substr_count($body, "\n") <= 1) {
+            throw new \RuntimeException('Generated Merchant TSV has 0 products.');
+        }
+
+        if ($ttl > 0) {
+            Cache::put('product_feed_google_tsv', $body, $ttl);
+        }
+
+        return $body;
     }
 
     public function forget(): void
@@ -39,19 +72,30 @@ class ProductFeedTsv
     {
         $lines = [implode("\t", self::HEADERS)];
         $service = (string) config('feed.shipping_service');
-        $countries = (array) config('feed.shipping_countries', ['CH']);
+        $handlingMin = (int) config('feed.shipping_handling_time_min', 1);
+        $handlingMax = (int) config('feed.shipping_handling_time_max', 1);
+        $transitMin = (int) config('feed.shipping_transit_time_min', 0);
+        $transitMax = (int) config('feed.shipping_transit_time_max', 1);
 
         Product::with(['images', 'categories'])
             ->orderBy('id')
-            ->chunk(200, function ($products) use (&$lines, $service, $countries) {
+            ->chunk(200, function ($products) use (&$lines, $service, $handlingMin, $handlingMax, $transitMin, $transitMax) {
                 foreach ($products as $product) {
                     $dto = $this->mapper->map($product);
                     if (! $dto) {
                         continue;
                     }
-                    $shipping = collect($countries)
-                        ->map(fn ($country) => sprintf('%s:%s:%s', $country, $service, number_format((float) config('feed.shipping_price', 0), 2, '.', '').' '.$dto->currency))
-                        ->implode(';');
+
+                    $shipPrice = PriceFormatter::format((float) config('feed.shipping_price', 0), $dto->currency);
+                    $shipping = sprintf(
+                        'CH:%s:%s:%d:%d:%d:%d',
+                        $service,
+                        $shipPrice,
+                        $handlingMin,
+                        $handlingMax,
+                        $transitMin,
+                        $transitMax
+                    );
 
                     $fields = [
                         $dto->id,
@@ -59,18 +103,22 @@ class ProductFeedTsv
                         $dto->description,
                         $dto->link,
                         $dto->imageLink,
+                        implode(',', $dto->additionalImageLinks),
                         $dto->availability,
+                        $dto->condition,
                         $dto->price,
                         $dto->salePrice ?? '',
                         $dto->brand,
                         $dto->gtin ?? '',
                         $dto->mpn ?? '',
-                        $dto->condition,
+                        $dto->identifierExists ? 'yes' : 'no',
+                        $dto->itemGroupId ?? '',
                         $dto->googleProductCategory,
                         $dto->productType,
-                        $dto->itemGroupId ?? '',
+                        $dto->shippingWeight ?? '',
+                        $dto->unitPricingMeasure ?? '',
+                        $dto->unitPricingBaseMeasure ?? '',
                         $shipping,
-                        $dto->identifierExists ? 'yes' : 'no',
                     ];
                     $lines[] = implode("\t", array_map([$this, 'escape'], $fields));
                 }

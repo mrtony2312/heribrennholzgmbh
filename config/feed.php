@@ -60,6 +60,9 @@ return [
 
     'cache_ttl' => (int) env('FEED_CACHE_TTL', 900),
 
+    // Refuse to publish / overwrite feeds below this absolute item count.
+    'min_items' => (int) env('FEED_MIN_ITEMS', 1),
+
     'title' => env('FEED_TITLE', 'Heri Brennholz GmbH – Produktkatalog'),
     'description' => env(
         'FEED_DESCRIPTION',
