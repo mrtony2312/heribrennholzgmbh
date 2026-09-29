@@ -37,7 +37,10 @@ class GoogleFeedTest extends TestCase
         $this->assertStringContainsString('<g:brand>', $xml);
         $this->assertStringContainsString('<g:mpn>', $xml);
         $this->assertStringContainsString('g:country>CH</g:country>', $xml);
-        $this->assertStringContainsString('1–2 Werktage', $xml);
+        $this->assertStringContainsString('Standardversand', $xml);
+        $this->assertStringContainsString('min_handling_time', $xml);
+        $this->assertStringContainsString('max_handling_time', $xml);
+        $this->assertStringNotContainsString('min_transit_time', $xml);
         $this->assertStringNotContainsString('g:country>DE</g:country>', $xml);
         $this->assertStringNotContainsString('Liechtenstein', $xml);
         $this->assertStringNotContainsString('Deutschland', $xml);

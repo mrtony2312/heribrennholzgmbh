@@ -56,7 +56,7 @@ return [
 
     'shipping' => [
         'country' => 'CH',
-        'service' => env('MERCHANT_SHIPPING_SERVICE', 'Standardversand (1–2 Werktage)'),
+        'service' => env('MERCHANT_SHIPPING_SERVICE', 'Standardversand'),
         'price' => env('MERCHANT_SHIPPING_PRICE', '0.00'),
         'min_days' => (int) env('MERCHANT_SHIPPING_MIN_DAYS', 1),
         'max_days' => (int) env('MERCHANT_SHIPPING_MAX_DAYS', 2),

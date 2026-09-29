@@ -22,9 +22,9 @@ class UnitPricingResolverTest extends TestCase
 
         $unit = UnitPricingResolver::resolve($product);
 
-        $this->assertSame('1050kg', $unit['measure']);
-        $this->assertSame('1kg', $unit['base']);
-        $this->assertSame('1050kg', $unit['shipping_weight']);
+        $this->assertSame('1050 kg', $unit['measure']);
+        $this->assertSame('1 kg', $unit['base']);
+        $this->assertSame('1050 kg', $unit['shipping_weight']);
     }
 
     public function test_derives_kg_from_grundpreis(): void
@@ -40,7 +40,7 @@ class UnitPricingResolverTest extends TestCase
 
         $unit = UnitPricingResolver::resolve($product);
 
-        $this->assertSame('1000kg', $unit['measure']);
-        $this->assertSame('1kg', $unit['base']);
+        $this->assertSame('1000 kg', $unit['measure']);
+        $this->assertSame('1 kg', $unit['base']);
     }
 }

@@ -10,8 +10,12 @@ use XMLWriter;
 /**
  * Google Merchant Center RSS 2.0 product feed (CH / de / CHF).
  *
+ * Only emits recognized product-data-spec attribute names under xmlns:g.
+ * Shipping is limited to country/service/price; handling times are top-level.
+ *
  * @see https://support.google.com/merchants/answer/14987622
  * @see https://support.google.com/merchants/answer/7052112
+ * @see https://support.google.com/merchants/answer/6324484
  */
 class GoogleFeedGenerator
 {
@@ -55,7 +59,6 @@ class GoogleFeedGenerator
     {
         $w->startElement('item');
 
-        // Required attributes (product data specification / free listings).
         $this->g($w, 'id', $dto->id);
         $this->g($w, 'title', $dto->title);
         $w->startElement('g:description');
@@ -78,7 +81,6 @@ class GoogleFeedGenerator
             }
         }
 
-        // Unique product identifiers (brand + GTIN and/or MPN).
         if ($dto->gtin) {
             $this->g($w, 'gtin', $dto->gtin);
         }
@@ -108,24 +110,29 @@ class GoogleFeedGenerator
             }
         }
 
-        // CH-only shipping with handling + transit (required market: Switzerland).
+        // Top-level handling times (recognized attributes).
+        $this->g($w, 'min_handling_time', (string) (int) config('feed.shipping_handling_time_min', 1));
+        $this->g($w, 'max_handling_time', (string) (int) config('feed.shipping_handling_time_max', 1));
+
+        // Shipping: only country / service / price (always recognized).
+        // Transit times → configure in Merchant Center shipping for CH.
         $shipPrice = PriceFormatter::format((float) config('feed.shipping_price', 0), $dto->currency);
-        foreach ((array) config('feed.shipping_countries', ['CH']) as $country) {
-            if ((string) $country !== 'CH') {
-                continue;
-            }
-            $w->startElement('g:shipping');
-            $this->g($w, 'country', 'CH');
-            $this->g($w, 'service', (string) config('feed.shipping_service'));
-            $this->g($w, 'price', $shipPrice);
-            $this->g($w, 'min_handling_time', (string) (int) config('feed.shipping_handling_time_min', 1));
-            $this->g($w, 'max_handling_time', (string) (int) config('feed.shipping_handling_time_max', 1));
-            $this->g($w, 'min_transit_time', (string) (int) config('feed.shipping_transit_time_min', 0));
-            $this->g($w, 'max_transit_time', (string) (int) config('feed.shipping_transit_time_max', 1));
-            $w->endElement();
-        }
+        $w->startElement('g:shipping');
+        $this->g($w, 'country', 'CH');
+        $this->g($w, 'service', $this->shippingService());
+        $this->g($w, 'price', $shipPrice);
+        $w->endElement();
 
         $w->endElement(); // item
+    }
+
+    private function shippingService(): string
+    {
+        $service = trim((string) config('feed.shipping_service', 'Standardversand'));
+        $service = str_replace(["\u{2013}", "\u{2014}", '–', '—'], '-', $service);
+        $service = preg_replace('/\s+/u', ' ', $service) ?? $service;
+
+        return $service !== '' ? $service : 'Standardversand';
     }
 
     private function g(XMLWriter $w, string $name, string $value): void

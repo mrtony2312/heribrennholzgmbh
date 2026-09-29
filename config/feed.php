@@ -22,7 +22,8 @@ return [
 
     'shipping_countries' => ['CH'],
 
-    'shipping_service' => env('MERCHANT_SHIPPING_SERVICE', 'Standardversand (1–2 Werktage)'),
+    // Plain service name only — delays go in min/max_handling_time + MC shipping settings.
+    'shipping_service' => env('MERCHANT_SHIPPING_SERVICE', 'Standardversand'),
 
     'shipping_price' => (float) env('MERCHANT_SHIPPING_PRICE', 0),
 

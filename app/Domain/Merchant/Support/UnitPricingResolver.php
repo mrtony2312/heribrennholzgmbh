@@ -34,7 +34,7 @@ class UnitPricingResolver
 
             return [
                 'measure' => $measure,
-                'base' => '1kg',
+                'base' => '1 kg',
                 'shipping_weight' => $measure,
             ];
         }
@@ -45,7 +45,7 @@ class UnitPricingResolver
 
             return [
                 'measure' => $measure,
-                'base' => '1cbm',
+                'base' => '1 cbm',
                 'shipping_weight' => null,
             ];
         }
@@ -181,6 +181,7 @@ class UnitPricingResolver
     {
         $formatted = rtrim(rtrim(number_format($value, 3, '.', ''), '0'), '.');
 
-        return $formatted.$unit;
+        // Google examples use a space before the unit (e.g. "3 kg", "1.5 kg").
+        return $formatted.' '.$unit;
     }
 }

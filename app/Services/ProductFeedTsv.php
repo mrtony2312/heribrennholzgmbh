@@ -11,6 +11,7 @@ class ProductFeedTsv
 {
     /**
      * Tab-delimited Google Merchant feed headers (CH / de / CHF).
+     * Only recognized product-data-spec attribute names.
      *
      * @see https://support.google.com/merchants/answer/7052112
      */
@@ -35,7 +36,9 @@ class ProductFeedTsv
         'shipping_weight',
         'unit_pricing_measure',
         'unit_pricing_base_measure',
-        'shipping(country:service:price:min_handling_time:max_handling_time:min_transit_time:max_transit_time)',
+        'min_handling_time',
+        'max_handling_time',
+        'shipping(country:service:price)',
     ];
 
     public function __construct(private readonly GoogleProductMapper $mapper)
@@ -51,7 +54,6 @@ class ProductFeedTsv
         }
 
         $body = $this->build();
-        // Header-only TSV = 0 products — do not cache / return as success path for writers.
         if (substr_count($body, "\n") <= 1) {
             throw new \RuntimeException('Generated Merchant TSV has 0 products.');
         }
@@ -71,15 +73,13 @@ class ProductFeedTsv
     private function build(): string
     {
         $lines = [implode("\t", self::HEADERS)];
-        $service = (string) config('feed.shipping_service');
+        $service = trim((string) config('feed.shipping_service', 'Standardversand'));
         $handlingMin = (int) config('feed.shipping_handling_time_min', 1);
         $handlingMax = (int) config('feed.shipping_handling_time_max', 1);
-        $transitMin = (int) config('feed.shipping_transit_time_min', 0);
-        $transitMax = (int) config('feed.shipping_transit_time_max', 1);
 
         Product::with(['images', 'categories'])
             ->orderBy('id')
-            ->chunk(200, function ($products) use (&$lines, $service, $handlingMin, $handlingMax, $transitMin, $transitMax) {
+            ->chunk(200, function ($products) use (&$lines, $service, $handlingMin, $handlingMax) {
                 foreach ($products as $product) {
                     $dto = $this->mapper->map($product);
                     if (! $dto) {
@@ -87,15 +87,7 @@ class ProductFeedTsv
                     }
 
                     $shipPrice = PriceFormatter::format((float) config('feed.shipping_price', 0), $dto->currency);
-                    $shipping = sprintf(
-                        'CH:%s:%s:%d:%d:%d:%d',
-                        $service,
-                        $shipPrice,
-                        $handlingMin,
-                        $handlingMax,
-                        $transitMin,
-                        $transitMax
-                    );
+                    $shipping = sprintf('CH:%s:%s', $service !== '' ? $service : 'Standardversand', $shipPrice);
 
                     $fields = [
                         $dto->id,
@@ -118,6 +110,8 @@ class ProductFeedTsv
                         $dto->shippingWeight ?? '',
                         $dto->unitPricingMeasure ?? '',
                         $dto->unitPricingBaseMeasure ?? '',
+                        (string) $handlingMin,
+                        (string) $handlingMax,
                         $shipping,
                     ];
                     $lines[] = implode("\t", array_map([$this, 'escape'], $fields));
