@@ -39,6 +39,8 @@ class GoogleProductMapper
         }
 
         $unit = UnitPricingResolver::resolve($product);
+        // Google shipping_weight max = 1000 kg. Keep unit_pricing; omit overweight shipping_weight.
+        [$shippingWeight, $shippingLabel] = $this->shippingWeightAndLabel($unit['shipping_weight'], $unit['measure']);
 
         $additional = $images
             ->reject(fn ($img) => $primary && $img->id === $primary->id)
@@ -69,15 +71,52 @@ class GoogleProductMapper
             itemGroupId: $product->item_group_id ? (string) $product->item_group_id : null,
             googleProductCategory: $this->googleCategory($product),
             productType: $product->categories->pluck('name')->filter()->implode(' > '),
-            shippingWeight: $unit['shipping_weight'],
+            shippingWeight: $shippingWeight,
             unitPricingMeasure: $unit['measure'],
             unitPricingBaseMeasure: $unit['base'],
+            shippingLabel: $shippingLabel,
             contentLanguage: 'de',
             targetCountry: 'CH',
             priceAmount: $price,
             currency: $currency,
             inStock: (bool) $product->in_stock,
         );
+    }
+
+    /**
+     * @return array{0: ?string, 1: ?string} [shipping_weight, shipping_label]
+     */
+    private function shippingWeightAndLabel(?string $shippingWeight, ?string $unitMeasure): array
+    {
+        $kg = $this->kilogramsFromMeasure($shippingWeight) ?? $this->kilogramsFromMeasure($unitMeasure);
+
+        if ($kg !== null && $kg > 1000) {
+            // Over Google's shipping_weight limit — use label instead (oversized / palette freight).
+            return [null, 'palette'];
+        }
+
+        if ($unitMeasure !== null && str_contains($unitMeasure, 'cbm')) {
+            return [$shippingWeight, 'sperrgut'];
+        }
+
+        if ($kg !== null && $kg >= 100) {
+            return [$shippingWeight, 'palette'];
+        }
+
+        return [$shippingWeight, null];
+    }
+
+    private function kilogramsFromMeasure(?string $measure): ?float
+    {
+        if ($measure === null || $measure === '') {
+            return null;
+        }
+
+        if (! preg_match('/^(\d+(?:\.\d+)?)\s*kg$/iu', trim($measure), $m)) {
+            return null;
+        }
+
+        return (float) $m[1];
     }
 
     public function isEligible(Product $product): bool

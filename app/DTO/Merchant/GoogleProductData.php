@@ -28,6 +28,7 @@ class GoogleProductData
         public readonly ?string $shippingWeight,
         public readonly ?string $unitPricingMeasure = null,
         public readonly ?string $unitPricingBaseMeasure = null,
+        public readonly ?string $shippingLabel = null,
         public readonly string $contentLanguage,
         public readonly string $targetCountry,
         public readonly float $priceAmount,

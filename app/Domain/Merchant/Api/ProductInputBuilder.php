@@ -72,6 +72,10 @@ class ProductInputBuilder
             $attributes['shippingWeight'] = $shippingWeight;
         }
 
+        if ($item->shippingLabel) {
+            $attributes['shippingLabel'] = $item->shippingLabel;
+        }
+
         $currency = $item->currency !== ''
             ? $item->currency
             : (string) config('merchant.currency', 'CHF');

@@ -103,6 +103,9 @@ class GoogleFeedGenerator
         if ($dto->shippingWeight) {
             $this->g($w, 'shipping_weight', $dto->shippingWeight);
         }
+        if ($dto->shippingLabel) {
+            $this->g($w, 'shipping_label', $dto->shippingLabel);
+        }
         if ($dto->unitPricingMeasure) {
             $this->g($w, 'unit_pricing_measure', $dto->unitPricingMeasure);
             if ($dto->unitPricingBaseMeasure) {
