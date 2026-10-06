@@ -35,6 +35,13 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('status', 'Ihr Warenkorb ist leer.');
         }
 
+        $outOfStock = $items->filter(fn ($item) => ! $item['product']->in_stock);
+        if ($outOfStock->isNotEmpty()) {
+            $names = $outOfStock->map(fn ($item) => $item['product']->name)->join(', ');
+            return redirect()->route('cart.index')
+                ->with('error', 'Folgende Artikel sind nicht mehr verfügbar: ' . $names . '. Bitte entfernen Sie diese aus dem Warenkorb.');
+        }
+
         // Keine Validierung: Felder werden unverändert übernommen, fehlende Pflichtfelder der DB als leer gespeichert.
         $data = [];
         foreach (['first_name', 'last_name', 'email', 'address', 'city', 'postcode'] as $field) {

@@ -34,6 +34,14 @@
     @include('partials.page-title', ['pageTitle' => 'Ihr Warenkorb'])
 
     <section class="flat-spacing-9">
+        <div class="container">
+            @if (session('error'))
+                <div class="alert alert-danger mb-4" role="alert">{{ session('error') }}</div>
+            @endif
+            @if (session('status'))
+                <div class="alert alert-success mb-4" role="alert">{{ session('status') }}</div>
+            @endif
+        </div>
         <div class="container" id="cartRoot"
              data-update-url="{{ route('cart.update') }}"
              data-remove-url="{{ route('cart.remove') }}"

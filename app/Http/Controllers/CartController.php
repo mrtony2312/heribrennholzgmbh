@@ -29,9 +29,18 @@ class CartController extends Controller
             'quantity' => ['nullable', 'integer', 'min:1', 'max:99'],
         ]);
 
+        $product = Product::findOrFail($data['product_id']);
+
+        if (! $product->in_stock) {
+            $message = $product->name . ' ist derzeit nicht verfügbar.';
+            if ($request->wantsJson()) {
+                return response()->json(['message' => $message], 422);
+            }
+            return back()->with('error', $message);
+        }
+
         $this->cart->add((int) $data['product_id'], (int) ($data['quantity'] ?? 1));
 
-        $product = Product::find($data['product_id']);
         $message = $product->name . ' wurde in den Warenkorb gelegt.';
 
         if ($request->wantsJson()) {
