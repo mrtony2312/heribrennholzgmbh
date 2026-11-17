@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use App\Mail\Concerns\AddsPlainTextPart;
+use App\Mail\Concerns\AttachesPaymentProof;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -13,6 +15,7 @@ use Illuminate\Queue\SerializesModels;
 class OrderConfirmationMail extends Mailable
 {
     use AddsPlainTextPart;
+    use AttachesPaymentProof;
     use Queueable;
     use SerializesModels;
 
@@ -25,7 +28,7 @@ class OrderConfirmationMail extends Mailable
     {
         return new Envelope(
             using: [$this->plainTextPart()],
-            subject: 'Ihre Bestellung ' . $this->order->reference . ' bei ' . config('app.name'),
+            subject: 'Ihre Bestellung '.$this->order->reference.' bei '.config('app.name'),
             replyTo: [config('mail.admin.address')],
         );
     }
@@ -33,5 +36,11 @@ class OrderConfirmationMail extends Mailable
     public function content(): Content
     {
         return new Content(view: 'emails.orders.customer');
+    }
+
+    /** @return array<int, Attachment> */
+    public function attachments(): array
+    {
+        return $this->paymentProofAttachments();
     }
 }

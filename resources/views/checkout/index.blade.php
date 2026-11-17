@@ -7,7 +7,7 @@
 
     <section class="flat-spacing-9">
         <div class="container">
-            <form action="{{ route('checkout.store') }}" method="POST" class="row">
+            <form action="{{ route('checkout.store') }}" method="POST" enctype="multipart/form-data" class="row">
                 @csrf
                 <div class="col-lg-7">
                     <h6 class="mb-3">Kontakt- &amp; Lieferdaten</h6>
@@ -26,15 +26,51 @@
                         </div>
                         <div class="col-12"><textarea class="form-control" name="notes" rows="3" placeholder="Anmerkungen (optional)">{{ old('notes') }}</textarea></div>
                     </div>
+
                     <h6 class="mt-4 mb-3">Zahlungsart</h6>
-                    <div class="d-flex flex-column gap-2">
+                    <div class="d-flex flex-column gap-2 mb-3">
                         @foreach (payment_methods() as $key => $label)
                             <label class="d-flex align-items-center gap-2">
                                 <input type="radio" name="payment_method" value="{{ $key }}" {{ old('payment_method', array_key_first(payment_methods())) === $key ? 'checked' : '' }}>
                                 <span>{{ $label }}</span>
                             </label>
                         @endforeach
-                        <p class="text-caption opacity-75 mb-0">Nach Bestelleingang erhalten Sie die Zahlungsdetails bzw. die Rechnung per E-Mail.</p>
+                    </div>
+
+                    <div style="border:1px solid #ece7e1;border-radius:12px;padding:20px;background:#faf8f5;">
+                        <h6 class="mb-2">Banküberweisung – Zahlungsempfänger</h6>
+                        <p class="text-caption opacity-75 mb-3">Bitte überweisen Sie den Gesamtbetrag auf folgendes Konto und laden Sie anschließend Ihren Zahlungsnachweis hoch, bevor Sie die Bestellung bestätigen.</p>
+                        <dl class="mb-0" style="display:grid;grid-template-columns:140px 1fr;gap:8px 12px;font-size:14px;">
+                            <dt class="opacity-75 mb-0">Kontoinhaber</dt>
+                            <dd class="mb-0 fw-semibold">{{ $bank['account_holder'] ?: '—' }}</dd>
+                            @if ($bank['bank_name'])
+                                <dt class="opacity-75 mb-0">Bank</dt>
+                                <dd class="mb-0">{{ $bank['bank_name'] }}</dd>
+                            @endif
+                            <dt class="opacity-75 mb-0">IBAN</dt>
+                            <dd class="mb-0 fw-semibold" style="letter-spacing:.02em;">{{ format_iban($bank['iban']) ?: '—' }}</dd>
+                            @if ($bank['bic'])
+                                <dt class="opacity-75 mb-0">BIC</dt>
+                                <dd class="mb-0">{{ $bank['bic'] }}</dd>
+                            @endif
+                            <dt class="opacity-75 mb-0">Betrag</dt>
+                            <dd class="mb-0 fw-semibold">{{ swiss_money($cart->total()) }}</dd>
+                        </dl>
+                        @if ($bank['note'])
+                            <p class="text-caption mt-3 mb-0 opacity-75">{{ $bank['note'] }}</p>
+                        @endif
+                    </div>
+
+                    <div class="mt-3">
+                        <label class="form-label fw-semibold" for="payment_proof">Zahlungsnachweis hochladen *</label>
+                        <input class="form-control @error('payment_proof') is-invalid @enderror" type="file" name="payment_proof" id="payment_proof" accept=".jpg,.jpeg,.png,.pdf,.webp,image/*,application/pdf" required>
+                        <p class="text-caption opacity-75 mt-1 mb-0">JPG, PNG, WEBP oder PDF, max. 8 MB. Screenshot oder PDF der Überweisung.</p>
+                        @error('payment_proof')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                        @error('payment_method')
+                            <div class="text-danger text-caption mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -84,7 +120,7 @@
                         <div class="d-flex justify-content-between fw-semibold h6"><span>Gesamt</span><span>{{ swiss_money($cart->total()) }}</span></div>
                         <div class="d-flex justify-content-between text-caption opacity-75"><span>Darin enthaltene MWST ({{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %)</span><span>{{ swiss_money(vat_included($cart->total())) }}</span></div>
                         <button type="submit" class="tf-btn btn-fill animate-btn w-100 mt-3"><span>Bestellung bestätigen</span></button>
-                        <p class="text-caption mt-2 opacity-75">Alle Preise in CHF, inklusive gesetzlicher Mehrwertsteuer.</p>
+                        <p class="text-caption mt-2 opacity-75">Alle Preise in CHF, inklusive gesetzlicher Mehrwertsteuer. Versand nach Zahlungseingang.</p>
                     </div>
                 </div>
             </form>

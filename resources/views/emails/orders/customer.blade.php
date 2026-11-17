@@ -20,27 +20,7 @@
 <h2 style="margin:0 0 4px;font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:#8a8178;">Bestellübersicht</h2>
 @include('emails.orders._summary')
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
-  <tr>
-    <td width="50%" valign="top" style="padding-right:12px;font-size:14px;line-height:1.6;">
-      <h2 style="margin:0 0 6px;font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:#8a8178;">Lieferadresse</h2>
-      {{ $order->full_name }}<br>
-      {{ $order->address }}<br>
-      @if ($order->address_2){{ $order->address_2 }}<br>@endif
-      {{ $order->postcode }} {{ $order->city }}<br>
-      {{ $order->country }}
-    </td>
-    <td width="50%" valign="top" style="padding-left:12px;font-size:14px;line-height:1.6;">
-      <h2 style="margin:0 0 6px;font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:#8a8178;">Kontakt</h2>
-      {{ $order->email }}<br>
-      @if ($order->phone){{ $order->phone }}<br>@endif
-    </td>
-  </tr>
-</table>
-
-@if ($order->notes)
-  <p style="margin:20px 0 0;font-size:14px;"><strong>Ihre Anmerkung:</strong><br>{{ $order->notes }}</p>
-@endif
+@include('emails.orders._details')
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
   <tr>

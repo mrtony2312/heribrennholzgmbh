@@ -27,4 +27,8 @@
     <td colspan="2" align="right" style="padding:12px 8px;border-top:2px solid #1c140f;font-size:16px;font-weight:700;">Gesamtbetrag</td>
     <td align="right" style="padding:12px 0;border-top:2px solid #1c140f;font-size:16px;font-weight:700;white-space:nowrap;">{{ $order->money($order->total) }}</td>
   </tr>
+  <tr>
+    <td colspan="2" align="right" style="padding:6px 8px 0;font-size:12px;color:#8a8178;">Darin enthaltene MWST ({{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %)</td>
+    <td align="right" style="padding:6px 0 0;font-size:12px;color:#8a8178;white-space:nowrap;">{{ $order->money(vat_included($order->total)) }}</td>
+  </tr>
 </table>

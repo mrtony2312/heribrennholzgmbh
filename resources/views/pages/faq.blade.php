@@ -13,7 +13,7 @@
                     ['Liefert Heri Brennholz auch ins Ausland?', 'Nein. Wir liefern ausschliesslich innerhalb der Schweiz.'],
                     ['Sind Ihre Produkte zertifiziert?', 'Zertifizierungen und Herstellerangaben (z. B. Norm, Herkunft) sind bei den jeweiligen Produkten aufgeführt. Bei Fragen zu einem Produkt kontaktieren Sie uns bitte.'],
                     ['Wie lagere ich Brennholz richtig?', 'An einem belüfteten, regengeschützten Ort und vom Boden abgehoben. Holzbriketts und Pellets müssen trocken gelagert werden.'],
-                    ['Welche Zahlungsmöglichkeiten habe ich?', 'Sie können per '.payment_methods_text().' bezahlen. Alle Preise verstehen sich in CHF inklusive Mehrwertsteuer.'],
+                    ['Welche Zahlungsmöglichkeiten habe ich?', 'Sie können per '.payment_methods_text().' bezahlen. Die Kontodaten sehen Sie auf der Kasse; bitte laden Sie Ihren Zahlungsnachweis bei der Bestellung hoch. Alle Preise verstehen sich in CHF inklusive Mehrwertsteuer.'],
                     ['Wie kann ich Heri Brennholz kontaktieren?', 'Sie erreichen uns über unser Kontaktformular oder per E-Mail an kontakt@heribrennholzgmbh.com. Details finden Sie auf unserer Kontaktseite.'],
                 ];
             @endphp

@@ -23,7 +23,7 @@
             <p>Die Darstellung der Produkte im Shop stellt kein bindendes Angebot dar, sondern eine Aufforderung zur Bestellung. Mit dem Absenden der Bestellung geben Sie ein verbindliches Angebot zum Kauf ab. Der Vertrag kommt mit unserer Bestellbestätigung per E-Mail zustande.</p>
 
             <h5>3. Preise und Zahlung</h5>
-            <p>Alle Preise verstehen sich in Schweizer Franken (CHF) als Endpreise inklusive der gesetzlichen Schweizer Mehrwertsteuer (MWST, Normalsatz {{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %). Die Lieferung ist kostenlos. Zahlungsarten: {{ payment_methods_text() }}. Die Zahlungsdetails bzw. die Rechnung erhalten Sie nach Bestelleingang per E-Mail. Bei Vorkasse erfolgt der Versand nach Zahlungseingang.</p>
+            <p>Alle Preise verstehen sich in Schweizer Franken (CHF) als Endpreise inklusive der gesetzlichen Schweizer Mehrwertsteuer (MWST, Normalsatz {{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %). Die Lieferung ist kostenlos. Zahlungsart: {{ payment_methods_text() }}. Die Bankdaten werden bei der Bestellung angezeigt; der Kunde lädt einen Zahlungsnachweis hoch. Der Versand erfolgt nach Zahlungseingang.</p>
 
             <h5>4. Lieferung</h5>
             <p>Wir liefern ausschliesslich innerhalb der Schweiz. Details finden Sie auf unserer <a href="/versand">Versandseite</a>.</p>

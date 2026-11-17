@@ -2,11 +2,13 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use App\Mail\Concerns\AddsPlainTextPart;
+use App\Mail\Concerns\AttachesPaymentProof;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -14,6 +16,7 @@ use Illuminate\Queue\SerializesModels;
 class NewOrderNotificationMail extends Mailable
 {
     use AddsPlainTextPart;
+    use AttachesPaymentProof;
     use Queueable;
     use SerializesModels;
 
@@ -26,7 +29,7 @@ class NewOrderNotificationMail extends Mailable
     {
         return new Envelope(
             using: [$this->plainTextPart()],
-            subject: 'Neue Bestellung ' . $this->order->reference . ' — ' . $this->order->money($this->order->total),
+            subject: 'Neue Bestellung '.$this->order->reference.' — '.$this->order->money($this->order->total),
             replyTo: [new Address($this->order->email, $this->order->full_name)],
         );
     }
@@ -34,5 +37,11 @@ class NewOrderNotificationMail extends Mailable
     public function content(): Content
     {
         return new Content(view: 'emails.orders.admin');
+    }
+
+    /** @return array<int, Attachment> */
+    public function attachments(): array
+    {
+        return $this->paymentProofAttachments();
     }
 }

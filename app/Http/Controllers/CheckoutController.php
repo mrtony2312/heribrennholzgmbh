@@ -6,11 +6,13 @@ use App\Mail\NewOrderNotificationMail;
 use App\Mail\OrderConfirmationMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\SiteSetting;
 use App\Services\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CheckoutController extends Controller
 {
@@ -25,7 +27,10 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('status', 'Ihr Warenkorb ist leer.');
         }
 
-        return view('checkout.index', ['items' => $items]);
+        return view('checkout.index', [
+            'items' => $items,
+            'bank' => SiteSetting::bankAccount(),
+        ]);
     }
 
     public function store(Request $request)
@@ -38,24 +43,43 @@ class CheckoutController extends Controller
         $outOfStock = $items->filter(fn ($item) => ! $item['product']->in_stock);
         if ($outOfStock->isNotEmpty()) {
             $names = $outOfStock->map(fn ($item) => $item['product']->name)->join(', ');
+
             return redirect()->route('cart.index')
-                ->with('error', 'Folgende Artikel sind nicht mehr verfügbar: ' . $names . '. Bitte entfernen Sie diese aus dem Warenkorb.');
+                ->with('error', 'Folgende Artikel sind nicht mehr verfügbar: '.$names.'. Bitte entfernen Sie diese aus dem Warenkorb.');
         }
 
-        // Keine Validierung: Felder werden unverändert übernommen, fehlende Pflichtfelder der DB als leer gespeichert.
-        $data = [];
-        foreach (['first_name', 'last_name', 'email', 'address', 'city', 'postcode'] as $field) {
-            $data[$field] = (string) $request->input($field, '');
-        }
-        foreach (['phone', 'address_2', 'notes'] as $field) {
-            $data[$field] = $request->input($field);
-        }
-        $data['country'] = 'Schweiz';
-        $data['payment_method'] = $request->input('payment_method') ?: array_key_first(payment_methods());
+        $methods = array_keys(payment_methods());
+
+        $data = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:50'],
+            'address' => ['required', 'string', 'max:255'],
+            'address_2' => ['nullable', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'postcode' => ['required', 'string', 'max:20'],
+            'notes' => ['nullable', 'string', 'max:2000'],
+            'payment_method' => ['required', Rule::in($methods)],
+            'payment_proof' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf,webp', 'max:8192'],
+        ]);
+
+        $proofPath = $request->file('payment_proof')->store('payment-proofs', 'local');
 
         $order = Order::create([
-            ...$data,
-            'reference' => 'HB-' . strtoupper(Str::random(8)),
+            'first_name' => (string) ($data['first_name'] ?? ''),
+            'last_name' => (string) ($data['last_name'] ?? ''),
+            'email' => (string) ($data['email'] ?? ''),
+            'phone' => $data['phone'] ?? null,
+            'address' => (string) ($data['address'] ?? ''),
+            'address_2' => $data['address_2'] ?? null,
+            'city' => (string) ($data['city'] ?? ''),
+            'postcode' => (string) ($data['postcode'] ?? ''),
+            'country' => 'Schweiz',
+            'notes' => $data['notes'] ?? null,
+            'payment_method' => $data['payment_method'],
+            'payment_proof_path' => $proofPath,
+            'reference' => 'HB-'.strtoupper(Str::random(8)),
             'status' => 'pending',
             'subtotal' => $this->cart->subtotal(),
             'shipping' => $this->cart->shipping(),
@@ -111,6 +135,9 @@ class CheckoutController extends Controller
     {
         $order->load('items');
 
-        return view('checkout.confirmation', compact('order'));
+        return view('checkout.confirmation', [
+            'order' => $order,
+            'bank' => SiteSetting::bankAccount(),
+        ]);
     }
 }

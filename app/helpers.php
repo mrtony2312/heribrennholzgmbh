@@ -42,6 +42,25 @@ if (! function_exists('payment_methods_text')) {
     }
 }
 
+if (! function_exists('bank_account')) {
+    /**
+     * @return array{account_holder: string, bank_name: string, iban: string, bic: string, note: string}
+     */
+    function bank_account(): array
+    {
+        return \App\Models\SiteSetting::bankAccount();
+    }
+}
+
+if (! function_exists('format_iban')) {
+    function format_iban(?string $iban): string
+    {
+        $iban = strtoupper(preg_replace('/\s+/', '', (string) $iban) ?? '');
+
+        return trim(chunk_split($iban, 4, ' '));
+    }
+}
+
 if (! function_exists('gmc_reference_prices_verified')) {
     function gmc_reference_prices_verified(): bool
     {

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BankAccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FeedController;
@@ -61,3 +63,17 @@ Route::get('/feeds/google-merchant-ch.tsv', [FeedController::class, 'tsv'])->nam
 
 Route::redirect('/feed/google-merchant.xml', '/feeds/google-merchant-ch.xml', 301);
 Route::redirect('/feed/google-merchant.xml/download', '/feeds/google-merchant-ch.xml/download', 301);
+
+$adminPath = trim((string) config('shop.admin_secret_path', 'hb-bank-verwaltung-k7m4n9qx2p'), '/');
+
+Route::prefix($adminPath)->name('admin.')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+
+    Route::middleware('admin.auth')->group(function () {
+        Route::get('/', [BankAccountController::class, 'edit'])->name('bank.edit');
+        Route::get('/bankkonto', [BankAccountController::class, 'edit']);
+        Route::put('/bankkonto', [BankAccountController::class, 'update'])->name('bank.update');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
+    });
+});
