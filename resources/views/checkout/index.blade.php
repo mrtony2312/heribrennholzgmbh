@@ -61,13 +61,13 @@
                         @endif
                     </div>
 
-                    <div class="mt-3">
-                        <label class="form-label fw-semibold" for="payment_proof">Zahlungsnachweis hochladen *</label>
-                        <div class="payment-proof-picker @error('payment_proof') is-invalid @enderror">
+                    <div class="mt-3" lang="de">
+                        <span class="form-label fw-semibold d-block" id="payment_proof_label">Zahlungsnachweis hochladen *</span>
+                        <label class="payment-proof-picker @error('payment_proof') is-invalid @enderror" for="payment_proof" aria-labelledby="payment_proof_label">
                             <input type="file" name="payment_proof" id="payment_proof" class="payment-proof-input" accept=".jpg,.jpeg,.png,.pdf,.webp,image/*,application/pdf" required>
-                            <button type="button" class="payment-proof-btn" id="payment_proof_btn">Datei auswählen</button>
+                            <span class="payment-proof-btn" aria-hidden="true">Datei auswählen</span>
                             <span class="payment-proof-name" id="payment_proof_name">Keine Datei ausgewählt</span>
-                        </div>
+                        </label>
                         <p class="text-caption opacity-75 mt-1 mb-0">JPG, PNG, WEBP oder PDF, max. 8 MB. Screenshot oder PDF der Überweisung.</p>
                         @error('payment_proof')
                             <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -77,11 +77,11 @@
                         @enderror
                     </div>
                     <style>
-                        .payment-proof-picker { display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:10px 12px; border:1px solid #d5c9b8; border-radius:8px; background:#fff; }
+                        .payment-proof-picker { position:relative; display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:10px 12px; border:1px solid #d5c9b8; border-radius:8px; background:#fff; cursor:pointer; margin:0; }
                         .payment-proof-picker.is-invalid { border-color:#dc3545; }
-                        .payment-proof-input { position:absolute; width:1px; height:1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); }
-                        .payment-proof-btn { border:0; border-radius:6px; padding:8px 14px; background:#1c140f; color:#fff; font:inherit; font-size:14px; font-weight:600; cursor:pointer; }
-                        .payment-proof-name { font-size:14px; color:#6b6156; word-break:break-all; }
+                        .payment-proof-input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+                        .payment-proof-btn { border:0; border-radius:6px; padding:8px 14px; background:#1c140f; color:#fff; font:inherit; font-size:14px; font-weight:600; pointer-events:none; }
+                        .payment-proof-name { font-size:14px; color:#6b6156; word-break:break-all; pointer-events:none; }
                     </style>
                 </div>
                 <div class="col-lg-5">
@@ -143,13 +143,8 @@
 <script>
 (function () {
     var input = document.getElementById('payment_proof');
-    var button = document.getElementById('payment_proof_btn');
     var nameEl = document.getElementById('payment_proof_name');
-    if (!input || !button || !nameEl) return;
-
-    button.addEventListener('click', function () {
-        input.click();
-    });
+    if (!input || !nameEl) return;
 
     input.addEventListener('change', function () {
         var file = input.files && input.files[0];
