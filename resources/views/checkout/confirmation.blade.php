@@ -6,48 +6,174 @@
     @include('partials.page-title', ['pageTitle' => 'Vielen Dank für Ihre Bestellung'])
 
     <section class="flat-spacing-9">
-        <div class="container" style="max-width:720px;">
-            <div class="text-center mb-4">
-                <div class="h4">Bestellung <strong>{{ $order->reference }}</strong> eingegangen</div>
-                <p class="opacity-75">Eine Bestätigung wurde an {{ $order->email }} gesendet.</p>
+        <div class="container confirmation-page">
+            <div class="text-center mb-4 px-1">
+                <div class="confirmation-heading">Bestellung <strong>{{ $order->reference }}</strong> eingegangen</div>
+                <p class="opacity-75 mb-0 confirmation-lead">Eine Bestätigung wurde an <span class="confirmation-break">{{ $order->email }}</span> gesendet.</p>
             </div>
 
-            <div style="border:1px solid #ece7e1;border-radius:12px;padding:24px;">
-                <table class="table">
-                    <tbody>
-                        @foreach ($order->items as $item)
-                            <tr>
-                                <td>{{ $item->name }} × {{ $item->quantity }}</td>
-                                <td class="text-end">{{ swiss_money((float) $item->line_total) }}</td>
-                            </tr>
-                        @endforeach
-                        <tr><td>Zwischensumme</td><td class="text-end">{{ swiss_money((float) $order->subtotal) }}</td></tr>
-                        <tr><td>Versand</td><td class="text-end">{{ $order->shipping > 0 ? swiss_money((float) $order->shipping) : 'Kostenlos' }}</td></tr>
-                        <tr class="fw-semibold"><td>Gesamtbetrag</td><td class="text-end">{{ swiss_money((float) $order->total) }}</td></tr>
-                        <tr class="text-caption"><td>Darin enthaltene MWST ({{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %)</td><td class="text-end">{{ swiss_money(vat_included($order->total)) }}</td></tr>
-                        @if ($order->payment_method)
-                            <tr class="text-caption"><td>Zahlungsart</td><td class="text-end">{{ config('shop.payment_methods.'.$order->payment_method.'.label', $order->payment_method) }}</td></tr>
-                        @endif
-                        @if ($order->payment_proof_path)
-                            <tr class="text-caption"><td>Zahlungsnachweis</td><td class="text-end">Hochgeladen</td></tr>
-                        @endif
-                    </tbody>
-                </table>
-                <p class="mb-1"><strong>Lieferadresse:</strong> {{ $order->first_name }} {{ $order->last_name }}, {{ $order->address }}@if($order->address_2), {{ $order->address_2 }}@endif, {{ $order->postcode }} {{ $order->city }}, {{ $order->country }}</p>
+            <div class="confirmation-card">
+                <ul class="confirmation-lines list-unstyled mb-0">
+                    @foreach ($order->items as $item)
+                        <li class="confirmation-line">
+                            <span class="confirmation-line-label">{{ $item->name }} × {{ $item->quantity }}</span>
+                            <span class="confirmation-line-value">{{ swiss_money((float) $item->line_total) }}</span>
+                        </li>
+                    @endforeach
+                    <li class="confirmation-line">
+                        <span class="confirmation-line-label">Zwischensumme</span>
+                        <span class="confirmation-line-value">{{ swiss_money((float) $order->subtotal) }}</span>
+                    </li>
+                    <li class="confirmation-line">
+                        <span class="confirmation-line-label">Versand</span>
+                        <span class="confirmation-line-value">{{ $order->shipping > 0 ? swiss_money((float) $order->shipping) : 'Kostenlos' }}</span>
+                    </li>
+                    <li class="confirmation-line confirmation-line-total">
+                        <span class="confirmation-line-label">Gesamtbetrag</span>
+                        <span class="confirmation-line-value">{{ swiss_money((float) $order->total) }}</span>
+                    </li>
+                    <li class="confirmation-line confirmation-line-muted">
+                        <span class="confirmation-line-label">Darin enthaltene MWST ({{ rtrim(rtrim(number_format(config('shop.vat_rate'), 1), '0'), '.') }} %)</span>
+                        <span class="confirmation-line-value">{{ swiss_money(vat_included($order->total)) }}</span>
+                    </li>
+                    @if ($order->payment_method)
+                        <li class="confirmation-line confirmation-line-muted">
+                            <span class="confirmation-line-label">Zahlungsart</span>
+                            <span class="confirmation-line-value">{{ config('shop.payment_methods.'.$order->payment_method.'.label', $order->payment_method) }}</span>
+                        </li>
+                    @endif
+                    @if ($order->payment_proof_path)
+                        <li class="confirmation-line confirmation-line-muted">
+                            <span class="confirmation-line-label">Zahlungsnachweis</span>
+                            <span class="confirmation-line-value">Hochgeladen</span>
+                        </li>
+                    @endif
+                </ul>
 
-                <div class="mt-3 pt-3" style="border-top:1px solid #ece7e1;">
+                <div class="confirmation-address">
+                    <strong>Lieferadresse</strong>
+                    <p class="mb-0 mt-1">
+                        {{ $order->first_name }} {{ $order->last_name }}<br>
+                        {{ $order->address }}@if($order->address_2), {{ $order->address_2 }}@endif<br>
+                        {{ $order->postcode }} {{ $order->city }}<br>
+                        {{ $order->country }}
+                    </p>
+                </div>
+
+                <div class="confirmation-bank">
                     <h6 class="mb-2">Bankdaten für Ihre Überweisung</h6>
                     <p class="mb-1 text-caption">Kontoinhaber: <strong>{{ $bank['account_holder'] }}</strong></p>
-                    @if ($bank['bank_name'])<p class="mb-1 text-caption">Bank: {{ $bank['bank_name'] }}</p>@endif
-                    <p class="mb-1 text-caption">IBAN: <strong>{{ format_iban($bank['iban']) }}</strong></p>
-                    @if ($bank['bic'])<p class="mb-1 text-caption">BIC: {{ $bank['bic'] }}</p>@endif
+                    @if ($bank['bank_name'])
+                        <p class="mb-1 text-caption">Bank: {{ $bank['bank_name'] }}</p>
+                    @endif
+                    <p class="mb-1 text-caption confirmation-break">IBAN: <strong>{{ format_iban($bank['iban']) }}</strong></p>
+                    @if ($bank['bic'])
+                        <p class="mb-1 text-caption">BIC: {{ $bank['bic'] }}</p>
+                    @endif
                     <p class="mb-0 text-caption opacity-75">Verwendungszweck: {{ $order->reference }}</p>
                 </div>
             </div>
 
             <div class="text-center mt-4">
-                <a href="{{ route('shop.index') }}" class="tf-btn btn-fill animate-btn"><span>Zurück zum Shop</span></a>
+                <a href="{{ route('shop.index') }}" class="tf-btn btn-fill animate-btn confirmation-cta"><span>Zurück zum Shop</span></a>
             </div>
         </div>
     </section>
+
+    <style>
+        .confirmation-page {
+            max-width: 720px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        .confirmation-heading {
+            font-size: clamp(1.05rem, 4.2vw, 1.5rem);
+            line-height: 1.35;
+            word-break: break-word;
+        }
+        .confirmation-lead {
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+        .confirmation-break {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        .confirmation-card {
+            border: 1px solid #ece7e1;
+            border-radius: 12px;
+            padding: 16px;
+            background: #fff;
+        }
+        .confirmation-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .confirmation-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        .confirmation-line-label {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        .confirmation-line-value {
+            flex: 0 0 auto;
+            text-align: right;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+        .confirmation-line-total {
+            font-weight: 600;
+            padding-top: 8px;
+            border-top: 1px solid #ece7e1;
+        }
+        .confirmation-line-muted {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .confirmation-address,
+        .confirmation-bank {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #ece7e1;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        .confirmation-cta {
+            width: 100%;
+            max-width: 320px;
+        }
+        @media (min-width: 576px) {
+            .confirmation-card {
+                padding: 24px;
+            }
+            .confirmation-page {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .tf-page-title-3 .heading {
+                font-size: clamp(1.25rem, 6vw, 1.75rem) !important;
+                padding-left: 12px;
+                padding-right: 12px;
+                line-height: 1.25;
+            }
+            .tf-page-title-3 .breadcrumbs {
+                padding-left: 12px;
+                padding-right: 12px;
+                row-gap: 4px;
+            }
+        }
+    </style>
 @endsection
