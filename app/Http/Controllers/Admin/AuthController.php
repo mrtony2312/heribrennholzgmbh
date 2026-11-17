@@ -29,7 +29,7 @@ class AuthController extends Controller
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
                 ->withInput($request->only('email'))
-                ->withErrors(['email' => 'Ungültige Anmeldedaten.']);
+                ->withErrors(['email' => 'Identifiants incorrects.']);
         }
 
         $request->session()->regenerate();
@@ -43,6 +43,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login')->with('status', 'Abgemeldet.');
+        return redirect()->route('admin.login')->with('status', 'Déconnecté.');
     }
 }

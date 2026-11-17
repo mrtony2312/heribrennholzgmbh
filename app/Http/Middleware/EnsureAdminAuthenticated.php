@@ -13,7 +13,7 @@ class EnsureAdminAuthenticated
     {
         if (! Auth::check()) {
             return redirect()->route('admin.login')
-                ->with('error', 'Bitte melden Sie sich an.');
+                ->with('error', 'Veuillez vous connecter.');
         }
 
         return $next($request);

@@ -33,6 +33,6 @@ class BankAccountController extends Controller
         SiteSetting::setValue('bank_bic', $data['bic'] ?? '');
         SiteSetting::setValue('bank_note', $data['note'] ?? '');
 
-        return back()->with('status', 'Bankkonto wurde aktualisiert. Die Kasse zeigt ab sofort die neuen Angaben.');
+        return back()->with('status', 'Compte bancaire mis à jour. La caisse affiche immédiatement les nouvelles informations.');
     }
 }

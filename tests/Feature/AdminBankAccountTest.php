@@ -69,6 +69,6 @@ class AdminBankAccountTest extends TestCase
     {
         $this->get($this->adminPath().'/login')
             ->assertOk()
-            ->assertSee('Bankkonto-Verwaltung', false);
+            ->assertSee('Gestion du compte bancaire', false);
     }
 }

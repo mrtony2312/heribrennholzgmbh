@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>Bankkonto bearbeiten – {{ config('app.name') }}</title>
+    <title>Modifier le compte bancaire – {{ config('app.name') }}</title>
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; min-height: 100vh; font-family: Georgia, "Times New Roman", serif; background: linear-gradient(160deg, #f4efe6 0%, #e8dfd0 45%, #d9cfc0 100%); color: #1c140f; }
@@ -29,12 +29,12 @@
     <div class="wrap">
         <header>
             <div>
-                <h1>Bankkonto der Kasse</h1>
-                <p class="sub">Nur diese Angaben werden auf der Bestellseite angezeigt. Keine anderen Shop-Einstellungen.</p>
+                <h1>Compte bancaire de la caisse</h1>
+                <p class="sub">Seules ces informations apparaissent sur la page de commande. Aucun autre réglage boutique.</p>
             </div>
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
-                <button type="submit" class="btn-ghost">Abmelden</button>
+                <button type="submit" class="btn-ghost">Déconnexion</button>
             </form>
         </header>
 
@@ -46,11 +46,11 @@
             @csrf
             @method('PUT')
 
-            <label for="account_holder">Kontoinhaber *</label>
+            <label for="account_holder">Titulaire du compte *</label>
             <input id="account_holder" name="account_holder" value="{{ old('account_holder', $bank['account_holder']) }}" required>
             @error('account_holder') <div class="errors">{{ $message }}</div> @enderror
 
-            <label for="bank_name">Bankname</label>
+            <label for="bank_name">Nom de la banque</label>
             <input id="bank_name" name="bank_name" value="{{ old('bank_name', $bank['bank_name']) }}">
             @error('bank_name') <div class="errors">{{ $message }}</div> @enderror
 
@@ -62,19 +62,19 @@
             <input id="bic" name="bic" value="{{ old('bic', $bank['bic']) }}">
             @error('bic') <div class="errors">{{ $message }}</div> @enderror
 
-            <label for="note">Hinweis für Kunden</label>
+            <label for="note">Note pour les clients</label>
             <textarea id="note" name="note">{{ old('note', $bank['note']) }}</textarea>
-            <div class="hint">Wird unter den Bankdaten auf der Kasse angezeigt.</div>
+            <div class="hint">Affichée sous les coordonnées bancaires à la caisse (en allemand pour les clients).</div>
             @error('note') <div class="errors">{{ $message }}</div> @enderror
 
             <div class="actions">
-                <button type="submit">Bankkonto speichern</button>
-                <a class="btn btn-ghost" href="{{ route('checkout.index') }}" target="_blank" rel="noopener">Kasse ansehen</a>
+                <button type="submit">Enregistrer le compte bancaire</button>
+                <a class="btn btn-ghost" href="{{ route('checkout.index') }}" target="_blank" rel="noopener">Voir la caisse</a>
             </div>
         </form>
 
         <div class="preview">
-            <strong>Aktuelle Vorschau</strong><br>
+            <strong>Aperçu actuel</strong><br>
             {{ $bank['account_holder'] ?: '—' }}<br>
             @if ($bank['bank_name']){{ $bank['bank_name'] }}<br>@endif
             IBAN: {{ format_iban($bank['iban']) ?: '—' }}

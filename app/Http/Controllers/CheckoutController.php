@@ -62,6 +62,11 @@ class CheckoutController extends Controller
             'notes' => ['nullable', 'string', 'max:2000'],
             'payment_method' => ['required', Rule::in($methods)],
             'payment_proof' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf,webp', 'max:8192'],
+        ], [
+            'payment_proof.required' => 'Bitte laden Sie einen Zahlungsnachweis hoch.',
+            'payment_proof.file' => 'Der Zahlungsnachweis muss eine Datei sein.',
+            'payment_proof.mimes' => 'Erlaubt sind JPG, PNG, WEBP oder PDF.',
+            'payment_proof.max' => 'Der Zahlungsnachweis darf maximal 8 MB groß sein.',
         ]);
 
         $proofPath = $request->file('payment_proof')->store('payment-proofs', 'local');

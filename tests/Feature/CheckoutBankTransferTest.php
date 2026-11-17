@@ -29,6 +29,8 @@ class CheckoutBankTransferTest extends TestCase
             ->assertSee('CH93 0076 2011 6238 5295 7', false)
             ->assertSee('Heri Brennholz GmbH', false)
             ->assertSee('Zahlungsnachweis hochladen', false)
+            ->assertSee('Datei auswählen', false)
+            ->assertSee('Keine Datei ausgewählt', false)
             ->assertDontSee('Kauf auf Rechnung', false);
     }
 

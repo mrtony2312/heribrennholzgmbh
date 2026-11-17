@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>Admin-Anmeldung – {{ config('app.name') }}</title>
+    <title>Connexion admin – {{ config('app.name') }}</title>
     <style>
         :root { color-scheme: light; }
         * { box-sizing: border-box; }
@@ -24,8 +24,8 @@
 </head>
 <body>
     <div class="card">
-        <h1>Bankkonto-Verwaltung</h1>
-        <p>Nur für Administratoren. Hier können Sie die Bankdaten der Kasse ändern.</p>
+        <h1>Gestion du compte bancaire</h1>
+        <p>Réservé aux administrateurs. Modifiez ici les coordonnées bancaires affichées à la caisse.</p>
 
         @if (session('status'))
             <div class="alert alert-ok">{{ session('status') }}</div>
@@ -36,20 +36,20 @@
 
         <form method="POST" action="{{ route('admin.login.submit') }}">
             @csrf
-            <label for="email">E-Mail</label>
+            <label for="email">E-mail</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
             @error('email') <div class="errors">{{ $message }}</div> @enderror
 
-            <label for="password">Passwort</label>
+            <label for="password">Mot de passe</label>
             <input id="password" type="password" name="password" required>
             @error('password') <div class="errors">{{ $message }}</div> @enderror
 
             <div class="row">
                 <input type="checkbox" name="remember" id="remember" value="1">
-                <label for="remember" style="margin:0;">Angemeldet bleiben</label>
+                <label for="remember" style="margin:0;">Rester connecté</label>
             </div>
 
-            <button type="submit">Anmelden</button>
+            <button type="submit">Se connecter</button>
         </form>
     </div>
 </body>
