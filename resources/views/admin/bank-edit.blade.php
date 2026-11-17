@@ -30,7 +30,7 @@
         <header>
             <div>
                 <h1>Compte bancaire de la caisse</h1>
-                <p class="sub">Seules ces informations apparaissent sur la page de commande. Aucun autre réglage boutique.</p>
+                <p class="sub">Seules ces informations apparaissent sur la page de confirmation de commande. Aucun autre réglage boutique.</p>
             </div>
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf

@@ -4,7 +4,7 @@
 <h1 style="margin:0 0 6px;font-size:22px;">Vielen Dank für Ihre Bestellung!</h1>
 <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#5b544c;">
   Hallo {{ $order->first_name }}, wir haben Ihre Bestellung erhalten und bearbeiten sie schnellstmöglich.
-  Sobald die Ware versandt wird, erhalten Sie eine weitere Nachricht.
+  Bitte überweisen Sie den Betrag mit den unten stehenden Bankdaten. Sobald die Ware versandt wird, erhalten Sie eine weitere Nachricht.
 </p>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf7f2;border:1px solid #ece5da;border-radius:10px;margin-bottom:24px;">

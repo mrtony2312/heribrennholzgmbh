@@ -6,7 +6,7 @@
     <td style="padding:16px 20px;color:#ffffff;">
       <div style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#c9bfb4;">Neue Bestellung eingegangen</div>
       <div style="font-size:24px;font-weight:700;margin-top:2px;">{{ $order->reference }} — {{ $order->money($order->total) }}</div>
-      <div style="font-size:13px;margin-top:6px;color:#c9bfb4;">Alle Formulardaten und der Zahlungsnachweis sind in dieser E-Mail enthalten.</div>
+      <div style="font-size:13px;margin-top:6px;color:#c9bfb4;">Alle Formulardaten und Bankdaten sind in dieser E-Mail enthalten.</div>
     </td>
   </tr>
 </table>

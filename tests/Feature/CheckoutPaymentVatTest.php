@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class CheckoutPaymentVatTest extends TestCase
@@ -33,13 +31,10 @@ class CheckoutPaymentVatTest extends TestCase
 
     public function test_checkout_stores_payment_method_and_rejects_inactive_ones(): void
     {
-        Storage::fake('local');
-
         $product = Product::factory()->create(['price' => 100]);
         $data = [
             'first_name' => 'Anna', 'last_name' => 'Muster', 'email' => 'a@example.ch',
             'address' => 'Bahnhofstrasse 1', 'city' => 'Bern', 'postcode' => '3000', 'country' => 'Schweiz',
-            'payment_proof' => UploadedFile::fake()->create('beleg.pdf', 100, 'application/pdf'),
         ];
 
         $this->withSession(['cart' => [$product->id => 1]])
@@ -52,7 +47,6 @@ class CheckoutPaymentVatTest extends TestCase
 
         $order = Order::first();
         $this->assertSame('vorkasse', $order->payment_method);
-        $this->assertNotEmpty($order->payment_proof_path);
-        Storage::disk('local')->assertExists($order->payment_proof_path);
+        $this->assertNull($order->payment_proof_path);
     }
 }

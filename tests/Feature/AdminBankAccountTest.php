@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Product;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Database\Seeders\BankAccountSeeder;
@@ -54,10 +55,33 @@ class AdminBankAccountTest extends TestCase
         $this->assertSame('TESTCHZZ', $bank['bic']);
         $this->assertSame('Test Bank', $bank['bank_name']);
 
-        $product = Product::factory()->create(['price' => 50, 'in_stock' => true]);
+        $order = Order::query()->create([
+            'first_name' => 'Anna',
+            'last_name' => 'Muster',
+            'email' => 'anna@example.ch',
+            'address' => 'Bahnhofstrasse 1',
+            'city' => 'Bern',
+            'postcode' => '3000',
+            'country' => 'Schweiz',
+            'payment_method' => 'vorkasse',
+            'reference' => 'HB-ADMIN01',
+            'status' => 'pending',
+            'subtotal' => 50,
+            'shipping' => 0,
+            'total' => 50,
+            'currency' => 'CHF',
+        ]);
 
-        $this->withSession(['cart' => [$product->id => 1]])
-            ->get('/kasse')
+        OrderItem::query()->create([
+            'order_id' => $order->id,
+            'product_id' => null,
+            'name' => 'Testprodukt',
+            'price' => 50,
+            'quantity' => 1,
+            'line_total' => 50,
+        ]);
+
+        $this->get(route('checkout.confirmation', $order->reference))
             ->assertOk()
             ->assertSee('Neue GmbH', false)
             ->assertSee('Test Bank', false)

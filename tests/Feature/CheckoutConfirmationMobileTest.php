@@ -26,7 +26,6 @@ class CheckoutConfirmationMobileTest extends TestCase
             'postcode' => '3000',
             'country' => 'Schweiz',
             'payment_method' => 'vorkasse',
-            'payment_proof_path' => 'payment-proofs/demo.jpg',
             'reference' => 'HB-MOBILE01',
             'status' => 'pending',
             'subtotal' => 100,

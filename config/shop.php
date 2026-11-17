@@ -7,7 +7,7 @@ return [
     'vat_rate' => (float) env('SHOP_VAT_RATE', 8.1),
 
     // Zahlungsarten. NUR aktivieren, was tatsächlich abgewickelt werden kann.
-    // Aktuell nur Banküberweisung (Vorkasse) mit Zahlungsnachweis beim Checkout.
+    // Aktuell nur Banküberweisung (Vorkasse). Kontodaten erscheinen nach der Bestellung.
     'payment_methods' => [
         'rechnung' => ['label' => 'Kauf auf Rechnung (QR-Rechnung)', 'enabled' => false],
         'vorkasse' => ['label' => 'Banküberweisung (Vorkasse)', 'enabled' => true],
@@ -22,7 +22,7 @@ return [
         'bank_name' => env('SHOP_BANK_NAME', ''),
         'iban' => env('SHOP_BANK_IBAN', ''),
         'bic' => env('SHOP_BANK_BIC', ''),
-        'note' => env('SHOP_BANK_NOTE', 'Bitte geben Sie Ihre Bestellnummer als Verwendungszweck an und laden Sie den Zahlungsnachweis hoch.'),
+        'note' => env('SHOP_BANK_NOTE', 'Bitte geben Sie Ihre Bestellnummer als Verwendungszweck an.'),
     ],
 
     // Geheimer Admin-Pfad nur für die Bankkonto-Verwaltung (ohne führenden Slash).

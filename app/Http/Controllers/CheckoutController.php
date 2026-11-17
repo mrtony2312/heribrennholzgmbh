@@ -29,7 +29,6 @@ class CheckoutController extends Controller
 
         return view('checkout.index', [
             'items' => $items,
-            'bank' => SiteSetting::bankAccount(),
         ]);
     }
 
@@ -61,15 +60,10 @@ class CheckoutController extends Controller
             'postcode' => ['required', 'string', 'max:20'],
             'notes' => ['nullable', 'string', 'max:2000'],
             'payment_method' => ['required', Rule::in($methods)],
-            'payment_proof' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf,webp', 'max:8192'],
         ], [
-            'payment_proof.required' => 'Bitte laden Sie einen Zahlungsnachweis hoch.',
-            'payment_proof.file' => 'Der Zahlungsnachweis muss eine Datei sein.',
-            'payment_proof.mimes' => 'Erlaubt sind JPG, PNG, WEBP oder PDF.',
-            'payment_proof.max' => 'Der Zahlungsnachweis darf maximal 8 MB groß sein.',
+            'payment_method.required' => 'Bitte wählen Sie eine Zahlungsart.',
+            'payment_method.in' => 'Bitte wählen Sie eine gültige Zahlungsart.',
         ]);
-
-        $proofPath = $request->file('payment_proof')->store('payment-proofs', 'local');
 
         $order = Order::create([
             'first_name' => (string) ($data['first_name'] ?? ''),
@@ -83,7 +77,6 @@ class CheckoutController extends Controller
             'country' => 'Schweiz',
             'notes' => $data['notes'] ?? null,
             'payment_method' => $data['payment_method'],
-            'payment_proof_path' => $proofPath,
             'reference' => 'HB-'.strtoupper(Str::random(8)),
             'status' => 'pending',
             'subtotal' => $this->cart->subtotal(),

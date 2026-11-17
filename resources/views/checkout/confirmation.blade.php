@@ -42,12 +42,6 @@
                             <span class="confirmation-line-value">{{ config('shop.payment_methods.'.$order->payment_method.'.label', $order->payment_method) }}</span>
                         </li>
                     @endif
-                    @if ($order->payment_proof_path)
-                        <li class="confirmation-line confirmation-line-muted">
-                            <span class="confirmation-line-label">Zahlungsnachweis</span>
-                            <span class="confirmation-line-value">Hochgeladen</span>
-                        </li>
-                    @endif
                 </ul>
 
                 <div class="confirmation-address">
@@ -61,16 +55,21 @@
                 </div>
 
                 <div class="confirmation-bank">
-                    <h6 class="mb-2">Bankdaten für Ihre Überweisung</h6>
-                    <p class="mb-1 text-caption">Kontoinhaber: <strong>{{ $bank['account_holder'] }}</strong></p>
+                    <h6 class="mb-2">Jetzt per Banküberweisung bezahlen</h6>
+                    <p class="text-caption opacity-75 mb-3">Bitte überweisen Sie den Gesamtbetrag auf folgendes Konto. Der Versand erfolgt nach Zahlungseingang.</p>
+                    <p class="mb-1 text-caption">Kontoinhaber: <strong>{{ $bank['account_holder'] ?: '—' }}</strong></p>
                     @if ($bank['bank_name'])
                         <p class="mb-1 text-caption">Bank: {{ $bank['bank_name'] }}</p>
                     @endif
-                    <p class="mb-1 text-caption confirmation-break">IBAN: <strong>{{ format_iban($bank['iban']) }}</strong></p>
+                    <p class="mb-1 text-caption confirmation-break">IBAN: <strong>{{ format_iban($bank['iban']) ?: '—' }}</strong></p>
                     @if ($bank['bic'])
                         <p class="mb-1 text-caption">BIC: {{ $bank['bic'] }}</p>
                     @endif
-                    <p class="mb-0 text-caption opacity-75">Verwendungszweck: {{ $order->reference }}</p>
+                    <p class="mb-1 text-caption">Betrag: <strong>{{ swiss_money((float) $order->total) }}</strong></p>
+                    <p class="mb-0 text-caption">Verwendungszweck: <strong>{{ $order->reference }}</strong></p>
+                    @if ($bank['note'])
+                        <p class="mb-0 mt-2 text-caption opacity-75">{{ $bank['note'] }}</p>
+                    @endif
                 </div>
             </div>
 
