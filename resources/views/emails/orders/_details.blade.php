@@ -33,7 +33,13 @@
       @if ($bank['bank_name'])<strong>Bank:</strong> {{ $bank['bank_name'] }}<br>@endif
       <strong>IBAN:</strong> {{ format_iban($bank['iban']) ?: '—' }}<br>
       @if ($bank['bic'])<strong>BIC:</strong> {{ $bank['bic'] }}<br>@endif
-      <strong>Verwendungszweck:</strong> {{ $order->reference }}
+      <strong>Verwendungszweck:</strong> {{ $order->reference }}<br>
+      <strong>Zahlungsnachweis:</strong>
+      @if ($order->payment_proof_path)
+        Als Anhang dieser E-Mail beigefügt
+      @else
+        Noch nicht eingereicht
+      @endif
       @if ($bank['note'])
         <br><span style="color:#5b544c;">{{ $bank['note'] }}</span>
       @endif

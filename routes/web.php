@@ -37,6 +37,7 @@ Route::delete('/warenkorb', [CartController::class, 'remove'])->name('cart.remov
 Route::get('/kasse', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/kasse', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/kasse/bestaetigung/{order:reference}', [CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
+Route::post('/kasse/bestaetigung/{order:reference}/zahlungsnachweis', [CheckoutController::class, 'uploadPaymentProof'])->name('checkout.payment-proof');
 
 Route::get('/ueber-uns', [PageController::class, 'about'])->name('pages.about');
 Route::get('/kontakt', [PageController::class, 'contact'])->name('pages.contact');

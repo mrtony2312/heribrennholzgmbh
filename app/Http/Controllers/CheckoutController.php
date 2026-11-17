@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Mail\NewOrderNotificationMail;
 use App\Mail\OrderConfirmationMail;
+use App\Mail\PaymentProofSubmittedMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\SiteSetting;
 use App\Services\Cart;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
@@ -129,7 +133,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function confirmation(Order $order)
+    public function confirmation(Order $order): View
     {
         $order->load('items');
 
@@ -137,5 +141,43 @@ class CheckoutController extends Controller
             'order' => $order,
             'bank' => SiteSetting::bankAccount(),
         ]);
+    }
+
+    public function uploadPaymentProof(Request $request, Order $order): RedirectResponse
+    {
+        $data = $request->validate([
+            'payment_proof' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf,webp', 'max:8192'],
+        ], [
+            'payment_proof.required' => 'Bitte wählen Sie einen Zahlungsnachweis aus.',
+            'payment_proof.file' => 'Der Zahlungsnachweis muss eine Datei sein.',
+            'payment_proof.mimes' => 'Erlaubt sind JPG, PNG, WEBP oder PDF.',
+            'payment_proof.max' => 'Der Zahlungsnachweis darf maximal 8 MB groß sein.',
+        ]);
+
+        $previousPath = $order->payment_proof_path;
+        $proofPath = $data['payment_proof']->store('payment-proofs', 'local');
+
+        $order->update([
+            'payment_proof_path' => $proofPath,
+        ]);
+
+        if (is_string($previousPath) && $previousPath !== '' && $previousPath !== $proofPath) {
+            Storage::disk('local')->delete($previousPath);
+        }
+
+        $order->refresh()->load('items');
+
+        try {
+            Mail::to(config('mail.admin.address'), config('mail.admin.name'))
+                ->send(new PaymentProofSubmittedMail($order));
+        } catch (\Throwable $e) {
+            Log::error('Zahlungsnachweis-Mail an Admin fehlgeschlagen', [
+                'order' => $order->reference, 'error' => $e->getMessage(),
+            ]);
+        }
+
+        return redirect()
+            ->route('checkout.confirmation', $order->reference)
+            ->with('status', 'Ihr Zahlungsnachweis wurde erfolgreich gesendet.');
     }
 }

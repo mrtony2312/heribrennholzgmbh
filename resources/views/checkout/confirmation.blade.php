@@ -71,6 +71,34 @@
                         <p class="mb-0 mt-2 text-caption opacity-75">{{ $bank['note'] }}</p>
                     @endif
                 </div>
+
+                <div class="confirmation-proof" lang="de">
+                    <h6 class="mb-2">Zahlungsnachweis senden</h6>
+                    <p class="text-caption opacity-75 mb-3">Laden Sie nach der Überweisung Ihren Beleg hoch (Screenshot oder PDF). Wir erhalten ihn per E-Mail.</p>
+
+                    @if (session('status'))
+                        <div class="confirmation-alert">{{ session('status') }}</div>
+                    @endif
+
+                    @if ($order->payment_proof_path)
+                        <p class="mb-3 text-caption"><strong>Status:</strong> Zahlungsnachweis wurde bereits gesendet. Sie können bei Bedarf eine neue Datei nachreichen.</p>
+                    @endif
+
+                    <form action="{{ route('checkout.payment-proof', $order->reference) }}" method="POST" enctype="multipart/form-data" class="confirmation-proof-form">
+                        @csrf
+                        <span class="form-label fw-semibold d-block" id="payment_proof_label">Zahlungsnachweis hochladen *</span>
+                        <label class="payment-proof-picker @error('payment_proof') is-invalid @enderror" for="payment_proof" aria-labelledby="payment_proof_label">
+                            <input type="file" name="payment_proof" id="payment_proof" class="payment-proof-input" accept=".jpg,.jpeg,.png,.pdf,.webp,image/*,application/pdf" required>
+                            <span class="payment-proof-btn" aria-hidden="true">Datei auswählen</span>
+                            <span class="payment-proof-name" id="payment_proof_name">Keine Datei ausgewählt</span>
+                        </label>
+                        <p class="text-caption opacity-75 mt-1 mb-0">JPG, PNG, WEBP oder PDF, max. 8 MB.</p>
+                        @error('payment_proof')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                        <button type="submit" class="tf-btn btn-fill animate-btn w-100 mt-3"><span>Senden</span></button>
+                    </form>
+                </div>
             </div>
 
             <div class="text-center mt-4">
@@ -139,7 +167,8 @@
             opacity: 0.8;
         }
         .confirmation-address,
-        .confirmation-bank {
+        .confirmation-bank,
+        .confirmation-proof {
             margin-top: 16px;
             padding-top: 16px;
             border-top: 1px solid #ece7e1;
@@ -147,6 +176,53 @@
             line-height: 1.45;
             overflow-wrap: anywhere;
             word-break: break-word;
+        }
+        .confirmation-alert {
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+        .payment-proof-picker {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid #d5c9b8;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            margin: 0;
+        }
+        .payment-proof-picker.is-invalid { border-color: #dc3545; }
+        .payment-proof-input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .payment-proof-btn {
+            border: 0;
+            border-radius: 6px;
+            padding: 8px 14px;
+            background: #1c140f;
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .payment-proof-name {
+            font-size: 14px;
+            color: #6b6156;
+            word-break: break-all;
+            pointer-events: none;
         }
         .confirmation-cta {
             width: 100%;
@@ -176,3 +252,18 @@
         }
     </style>
 @endsection
+
+@push('scripts')
+<script>
+(function () {
+    var input = document.getElementById('payment_proof');
+    var nameEl = document.getElementById('payment_proof_name');
+    if (!input || !nameEl) return;
+
+    input.addEventListener('change', function () {
+        var file = input.files && input.files[0];
+        nameEl.textContent = file ? file.name : 'Keine Datei ausgewählt';
+    });
+})();
+</script>
+@endpush
